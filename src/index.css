@@ -1,0 +1,1428 @@
+/* ============================================================
+   RINGNEX DESIGN SYSTEM — Premium Light Mode
+   Accent: Indigo #5B5BD6  |  Surface: #FFFFFF  |  BG: #F6F7F9
+   ============================================================ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+   /* ── Design Tokens ─────────────────────────────────────────── */
+   :root {
+     /* Accent (indigo) */
+     --accent:           #5B5BD6;
+     --accent-hover:     #4A4AC9;
+     --accent-light:     #EDEDFB;
+     --accent-light2:    #D8D8F7;
+     --accent-glow:      rgba(91, 91, 214, 0.20);
+   
+     /* Backgrounds */
+     --bg-app:           #F6F7F9;
+     --bg-surface:       #FFFFFF;
+     --bg-surface-2:     #FAFAFA;
+     --bg-glass:         rgba(255, 255, 255, 0.84);
+     --bg-hover:         rgba(91, 91, 214, 0.06);
+     --bg-active:        rgba(91, 91, 214, 0.10);
+   
+     /* Text */
+     --text-primary:     #0D0D12;
+     --text-secondary:   #6B6B7B;
+     --text-tertiary:    #9E9EAD;
+     --text-inverse:     #FFFFFF;
+     --text-accent:      #5B5BD6;
+   
+     /* Borders */
+     --border:           rgba(0, 0, 0, 0.07);
+     --border-strong:    rgba(0, 0, 0, 0.12);
+     --border-accent:    rgba(91, 91, 214, 0.30);
+   
+     /* Semantic */
+     --ok:               #17A363;
+     --ok-light:         #DCFCE7;
+     --ok-glow:          rgba(23, 163, 99, 0.22);
+     --err:              #D0281A;
+     --err-light:        #FEE2E2;
+     --err-glow:         rgba(208, 40, 26, 0.20);
+     --warn:             #D38A00;
+     --warn-light:       #FEF3C7;
+   
+     /* Shadows (ultra-soft, premium) */
+     --shadow-xs:        0 1px 2px rgba(0,0,0,0.04);
+     --shadow-sm:        0 1px 4px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.04);
+     --shadow-md:        0 3px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+     --shadow-lg:        0 6px 28px rgba(0,0,0,0.09), 0 0 0 1px rgba(0,0,0,0.05);
+     --shadow-xl:        0 16px 56px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+     --shadow-glass:     0 8px 40px rgba(0,0,0,0.10), 0 0 0 1px rgba(255,255,255,0.60);
+     --shadow-accent:    0 4px 20px rgba(91,91,214,0.22);
+   
+     /* Radii */
+     --r-sm:   6px;
+     --r-md:   10px;
+     --r-lg:   14px;
+     --r-xl:   18px;
+     --r-2xl:  24px;
+     --r-3xl:  32px;
+     --r-full: 9999px;
+   
+     /* Sidebar */
+     --sidebar-width:      248px;
+     --sidebar-collapsed:  68px;
+   
+     /* Typography */
+     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+   
+     /* Transitions */
+     --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+     --ease-out:     cubic-bezier(0.0, 0.0, 0.2, 1);
+     --dur-fast:     140ms;
+     --dur-base:     220ms;
+     --dur-slow:     360ms;
+   }
+   
+   /* ── Dark Mode Tokens ───────────────────────────────────────── */
+   [data-theme="dark"] {
+     --accent:           #7C7CF0;
+     --accent-hover:     #6B6BE8;
+     --accent-light:     #1E1E3A;
+     --accent-light2:    #2A2A4A;
+     --accent-glow:      rgba(124, 124, 240, 0.25);
+   
+     --bg-app:           #0F0F14;
+     --bg-surface:       #17171F;
+     --bg-surface-2:     #1E1E28;
+     --bg-glass:         rgba(23, 23, 31, 0.90);
+     --bg-hover:         rgba(124, 124, 240, 0.08);
+     --bg-active:        rgba(124, 124, 240, 0.14);
+   
+     --text-primary:     #F0F0F5;
+     --text-secondary:   #A0A0B0;
+     --text-tertiary:    #68687A;
+     --text-inverse:     #0F0F14;
+     --text-accent:      #7C7CF0;
+   
+     --border:           rgba(255, 255, 255, 0.07);
+     --border-strong:    rgba(255, 255, 255, 0.12);
+     --border-accent:    rgba(124, 124, 240, 0.30);
+   
+     --ok:               #22C77A;
+     --ok-light:         #0F2A1E;
+     --ok-glow:          rgba(34, 199, 122, 0.22);
+     --err:              #F87171;
+     --err-light:        #2A0F0F;
+     --err-glow:         rgba(248, 113, 113, 0.20);
+     --warn:             #FBBF24;
+     --warn-light:       #2A1F00;
+   
+     --shadow-xs:        0 1px 2px rgba(0,0,0,0.30);
+     --shadow-sm:        0 1px 4px rgba(0,0,0,0.40), 0 0 0 1px rgba(255,255,255,0.04);
+     --shadow-md:        0 3px 12px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04);
+     --shadow-lg:        0 6px 28px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);
+     --shadow-xl:        0 16px 56px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.05);
+     --shadow-glass:     0 8px 40px rgba(0,0,0,0.50), 0 0 0 1px rgba(255,255,255,0.06);
+     --shadow-accent:    0 4px 20px rgba(124,124,240,0.30);
+   }
+   
+   /* ── Reset ──────────────────────────────────────────────────── */
+   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+   
+   html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+   
+   body {
+     font-family: var(--font-sans);
+     font-size: 14px;
+     line-height: 1.5;
+     color: var(--text-primary);
+     background: var(--bg-app);
+     min-height: 100vh;
+     overflow-x: hidden;
+   }
+   
+   /* ── Scrollbar ──────────────────────────────────────────────── */
+   ::-webkit-scrollbar               { width: 5px; height: 5px; }
+   ::-webkit-scrollbar-track         { background: transparent; }
+   ::-webkit-scrollbar-thumb         { background: rgba(0,0,0,0.12); border-radius: var(--r-full); }
+   ::-webkit-scrollbar-thumb:hover   { background: rgba(0,0,0,0.22); }
+   
+   /* ── Selection ──────────────────────────────────────────────── */
+   ::selection { background: var(--accent-light2); color: var(--accent); }
+   
+   /* ── Layout ─────────────────────────────────────────────────── */
+   .ringnex-dashboard {
+     display: flex;
+     height: 100vh;
+     width: 100vw;
+     overflow: hidden;
+     background: var(--bg-app);
+   }
+   
+   .ml-64 { margin-left: var(--sidebar-width) !important; }
+   
+   /* ── Typography helpers ─────────────────────────────────────── */
+   nav a       { font-size: 13.5px; text-decoration: none; }
+   .list-group li { font-family: var(--font-sans); }
+   
+   /* ── Spinner / Loading ──────────────────────────────────────── */
+   .ringnex-spinner {
+     width: 40px;
+     height: 40px;
+     border: 3px solid var(--border);
+     border-top-color: var(--accent);
+     border-radius: 50%;
+     animation: spin 0.8s linear infinite;
+     margin: 0 auto 20px;
+   }
+   
+   @keyframes spin { to { transform: rotate(360deg); } }
+   
+   /* ── Glass helper ───────────────────────────────────────────── */
+   .glass {
+     background:      var(--bg-glass);
+     backdrop-filter: blur(20px) saturate(180%);
+     -webkit-backdrop-filter: blur(20px) saturate(180%);
+     border: 1px solid rgba(255,255,255,0.55);
+   }
+   
+   /* ── Surface card ───────────────────────────────────────────── */
+   .ringnex-card {
+     background:    var(--bg-surface);
+     border:        1px solid var(--border);
+     border-radius: var(--r-2xl);
+     box-shadow:    var(--shadow-sm);
+     overflow:      hidden;
+   }
+   
+   .ringnex-card-header {
+     padding: 20px 24px;
+     border-bottom: 1px solid var(--border);
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   }
+   
+   .ringnex-card-header h2,
+   .ringnex-card-header h3 {
+     font-size: 17px;
+     font-weight: 700;
+     color: var(--text-primary);
+     letter-spacing: -0.3px;
+   }
+   
+   /* ── Sidebar ─────────────────────────────────────────────────── */
+   .ringnex-sidebar,
+   .myaio-sidebar {
+     position: fixed !important;
+     top: 0;
+     left: 0;
+     height: 100vh;
+     z-index: 50;
+     background: var(--bg-glass);
+     backdrop-filter: blur(20px) saturate(180%);
+     -webkit-backdrop-filter: blur(20px) saturate(180%);
+     border-right: 1px solid var(--border);
+     box-shadow: 1px 0 0 var(--border), var(--shadow-xs);
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .ringnex-logo,
+   .sidebar-logo {
+     height: 60px;
+     flex-shrink: 0;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     padding: 0 16px;
+     border-bottom: 1px solid var(--border);
+   }
+   
+   .logo-text {
+     font-weight: 700;
+     font-size: 15px;
+     letter-spacing: -0.3px;
+     color: var(--text-primary);
+   }
+   
+   .ringnex-nav,
+   .sidebar-nav {
+     flex: 1;
+     overflow-y: auto;
+     overflow-x: hidden;
+     padding: 10px 8px;
+     scroll-behavior: smooth;
+   }
+   
+   .ringnex-nav::-webkit-scrollbar,
+   .sidebar-nav::-webkit-scrollbar { width: 0; }
+   
+   /* Nav items */
+   .ringnex-nav-item,
+   .sidebar-link,
+   .myaio-navitem {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     padding: 9px 12px;
+     margin-bottom: 2px;
+     border-radius: var(--r-lg);
+     font-size: 13.5px;
+     font-weight: 500;
+     color: var(--text-secondary);
+     text-decoration: none;
+     background: transparent;
+     border: none;
+     cursor: pointer;
+     transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+     width: 100%;
+     position: relative;
+   }
+   
+   .ringnex-nav-item:hover,
+   .sidebar-link:hover,
+   .myaio-navitem:hover {
+     background: var(--bg-hover);
+     color: var(--text-primary);
+   }
+   
+   .ringnex-nav-item.active,
+   .sidebar-link.active,
+   .myaio-navitem.active {
+     background: var(--accent-light);
+     color: var(--accent);
+     font-weight: 600;
+   }
+   
+   .ringnex-nav-item svg,
+   .sidebar-link svg,
+   .myaio-navitem svg { width: 17px; height: 17px; flex-shrink: 0; }
+   
+   /* Submenu */
+   .submenu { padding-left: 40px; }
+   
+   .submenu-float {
+     position: absolute;
+     left: calc(var(--sidebar-collapsed) + 8px);
+     z-index: 9999;
+     background: var(--bg-surface);
+     border: 1px solid var(--border);
+     border-radius: var(--r-xl);
+     box-shadow: var(--shadow-lg);
+     padding: 6px;
+     min-width: 196px;
+     animation: scale-in var(--dur-fast) var(--ease-out);
+   }
+   
+   @keyframes scale-in {
+     from { opacity: 0; transform: scale(0.95) translateY(-4px); }
+     to   { opacity: 1; transform: scale(1)    translateY(0); }
+   }
+   
+   .submenu-item,
+   .myaio-subitem {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     padding: 8px 10px;
+     border-radius: var(--r-md);
+     font-size: 13px;
+     color: var(--text-secondary);
+     text-decoration: none;
+     transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+   }
+   
+   .submenu-item:hover,
+   .myaio-subitem:hover {
+     background: var(--bg-hover);
+     color: var(--text-primary);
+   }
+   
+   .submenu-item.active,
+   .myaio-subitem.active {
+     background: var(--accent-light);
+     color: var(--accent);
+     font-weight: 600;
+   }
+   
+   /* Sidebar footer */
+   .ringnex-user,
+   .sidebar-footer {
+     flex-shrink: 0;
+     padding: 10px 8px;
+     border-top: 1px solid var(--border);
+   }
+   
+   .sidebar-link.logout,
+   .ringnex-logout {
+     color: var(--err);
+     gap: 10px;
+   }
+   
+   .sidebar-link.logout:hover,
+   .ringnex-logout:hover { background: var(--err-light); }
+   
+   .sidebar-backdrop {
+     position: fixed;
+     inset: 0;
+     background: rgba(0, 0, 0, 0.30);
+     backdrop-filter: blur(6px);
+   }
+   
+   /* Chevron */
+   .chev { margin-left: auto; transition: transform var(--dur-base) ease; }
+   .chev.rot { transform: rotate(180deg); }
+   
+   /* User profile */
+   .ringnex-avatar {
+     width: 34px;
+     height: 34px;
+     border-radius: 50%;
+     background: var(--accent-light);
+     color: var(--accent);
+     font-weight: 700;
+     font-size: 13px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-shrink: 0;
+   }
+   
+   /* ── Dialer panel ────────────────────────────────────────────── */
+   .ringnex-dialer-panel {
+     width: 40%;
+     padding: 20px;
+     display: flex;
+     align-items: flex-start;
+     padding-top: 28px;
+   }
+   
+   .ringnex-dialer-body {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 28px;
+     background: var(--bg-surface);
+     padding: 32px 28px;
+   }
+   
+   /* Input */
+   .ringnex-input-wrapper { position: relative; width: 100%; max-width: 440px; }
+   
+   .ringnex-phone-input {
+     width: 100%;
+     font-size: 26px;
+     font-weight: 300;
+     letter-spacing: 1px;
+     text-align: center;
+     color: var(--text-primary);
+     background: transparent;
+     border: none;
+     border-bottom: 1.5px solid var(--border-strong);
+     outline: none;
+     padding-bottom: 10px;
+     transition: border-color var(--dur-fast) ease;
+     font-family: var(--font-mono);
+   }
+   
+   .ringnex-phone-input:focus { border-bottom-color: var(--accent); }
+   .ringnex-phone-input::placeholder { color: var(--text-tertiary); font-family: var(--font-sans); font-size: 16px; }
+   
+   /* Dialpad grid */
+   .ringnex-dialpad {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 12px;
+     max-width: 300px;
+     width: 100%;
+   }
+   
+   .ringnex-dialpad-btn {
+     aspect-ratio: 1;
+     border-radius: 50%;
+     background: var(--bg-surface-2);
+     border: 1px solid var(--border);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: background var(--dur-fast) ease, transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+     box-shadow: var(--shadow-xs);
+     width: 68px;
+     height: 68px;
+     margin: auto;
+   }
+   
+   .ringnex-dialpad-btn:hover {
+     background: var(--accent-light);
+     border-color: var(--border-accent);
+     box-shadow: var(--shadow-accent);
+     transform: scale(1.04);
+   }
+   
+   .ringnex-dialpad-btn:active { transform: scale(0.94); box-shadow: none; }
+   
+   .ringnex-digit {
+     font-size: 20px;
+     font-weight: 500;
+     color: var(--text-primary);
+     line-height: 1;
+   }
+   
+   .ringnex-letters {
+     font-size: 8px;
+     font-weight: 600;
+     color: var(--text-tertiary);
+     letter-spacing: 1.2px;
+     margin-top: 2px;
+     text-transform: uppercase;
+   }
+   
+   /* Call button */
+   .ringnex-call-btn {
+     width: 64px;
+     height: 64px;
+     border-radius: 50%;
+     background: var(--accent);
+     border: none;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     box-shadow: var(--shadow-accent);
+     transition: background var(--dur-fast) ease, transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+   }
+   
+   .ringnex-call-btn:hover {
+     background: var(--accent-hover);
+     transform: scale(1.08);
+     box-shadow: 0 6px 28px rgba(91,91,214,0.32);
+   }
+   
+   .ringnex-call-btn:active { transform: scale(0.95); }
+   
+   .ringnex-call-btn:disabled {
+     background: var(--border-strong);
+     box-shadow: none;
+     cursor: not-allowed;
+     opacity: 0.55;
+   }
+   
+   /* Clear (backspace) */
+   .ringnex-clear-btn {
+     position: absolute;
+     right: 0;
+     top: 50%;
+     transform: translateY(-60%);
+     background: none;
+     border: none;
+     cursor: pointer;
+     color: var(--text-tertiary);
+     transition: color var(--dur-fast) ease;
+     padding: 4px;
+     border-radius: var(--r-sm);
+   }
+   
+   .ringnex-clear-btn:hover { color: var(--err); }
+   
+   /* Status badge */
+   .ringnex-status-ready {
+     display: inline-flex;
+     align-items: center;
+     gap: 5px;
+     background: var(--ok-light);
+     color: var(--ok);
+     padding: 4px 12px;
+     border-radius: var(--r-full);
+     font-size: 11px;
+     font-weight: 700;
+     letter-spacing: 0.3px;
+   }
+   
+   /* ── Logs panel ──────────────────────────────────────────────── */
+   .ringnex-logs-panel {
+     width: 40%;
+     padding: 20px 20px 20px 0;
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .ringnex-logs-list,
+   .ringnex-logs-container {
+     flex: 1;
+     overflow-y: auto;
+     padding: 0 4px 0 0;
+   }
+   
+   /* Tabs */
+   .ringnex-tabs {
+     display: flex;
+     gap: 2px;
+     background: var(--bg-surface-2);
+     border: 1px solid var(--border);
+     border-radius: var(--r-full);
+     padding: 3px;
+     width: fit-content;
+     margin-bottom: 16px;
+   }
+   
+   .ringnex-tab {
+     padding: 6px 16px;
+     border-radius: var(--r-full);
+     background: transparent;
+     border: none;
+     font-size: 12.5px;
+     font-weight: 500;
+     color: var(--text-secondary);
+     cursor: pointer;
+     transition: all var(--dur-fast) ease;
+     white-space: nowrap;
+   }
+   
+   .ringnex-tab:hover { color: var(--text-primary); }
+   
+   .ringnex-tab.active,
+   .ringnex-tab-active {
+     background: var(--bg-surface);
+     color: var(--accent);
+     font-weight: 600;
+     box-shadow: var(--shadow-xs);
+   }
+   
+   .ringnex-tab-count {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     background: var(--accent-light);
+     color: var(--accent);
+     font-size: 10px;
+     font-weight: 700;
+     padding: 2px 7px;
+     border-radius: var(--r-full);
+     min-width: 20px;
+   }
+   
+   /* Log item */
+   .ringnex-log-item {
+     display: flex;
+     align-items: center;
+     gap: 14px;
+     padding: 13px 14px;
+     border-radius: var(--r-lg);
+     background: var(--bg-surface);
+     border: 1px solid transparent;
+     cursor: pointer;
+     transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease;
+     margin-bottom: 6px;
+   }
+   
+   .ringnex-log-item:hover {
+     border-color: var(--border);
+     box-shadow: var(--shadow-sm);
+     transform: translateY(-1px);
+   }
+   
+   .ringnex-log-item[data-type="missed"] { border-left: 2px solid var(--err); }
+   
+   /* Log avatar */
+   .ringnex-log-avatar {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: white;
+     font-weight: 700;
+     font-size: 15px;
+     flex-shrink: 0;
+   }
+   
+   .ringnex-log-name {
+     font-size: 13.5px;
+     font-weight: 600;
+     color: var(--text-primary);
+     margin-bottom: 2px;
+   }
+   
+   .ringnex-log-number {
+     font-size: 11px;
+     color: var(--text-secondary);
+     font-family: var(--font-mono);
+   }
+   
+   .ringnex-log-time {
+     font-size: 11px;
+     color: var(--text-tertiary);
+     white-space: nowrap;
+   }
+   
+   /* Call log button */
+   .ringnex-call-btn-log {
+     width: 36px;
+     height: 36px;
+     border-radius: 50%;
+     background: var(--accent-light);
+     color: var(--accent);
+     border: none;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: background var(--dur-fast) ease, transform var(--dur-fast) ease;
+     flex-shrink: 0;
+   }
+   
+   .ringnex-call-btn-log:hover { background: var(--accent); color: #fff; transform: scale(1.08); }
+   .ringnex-call-btn-log:disabled { opacity: 0.4; cursor: not-allowed; }
+   
+   /* ── Active call bar ─────────────────────────────────────────── */
+   .ringnex-call-bar {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     background: var(--bg-glass);
+     backdrop-filter: blur(24px) saturate(200%);
+     -webkit-backdrop-filter: blur(24px) saturate(200%);
+     border: 1px solid rgba(255,255,255,0.55);
+     border-radius: var(--r-2xl);
+     box-shadow: var(--shadow-glass);
+     z-index: 9999;
+     min-width: 300px;
+     overflow: hidden;
+   }
+   
+   .ringnex-call-header {
+     padding: 16px 20px;
+     border-bottom: 1px solid var(--border);
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   }
+   
+   .ringnex-caller-avatar {
+     width: 44px;
+     height: 44px;
+     border-radius: 50%;
+     background: var(--accent-light);
+     color: var(--accent);
+     font-size: 18px;
+     font-weight: 700;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .ringnex-timer {
+     font-size: 22px;
+     font-family: var(--font-mono);
+     font-weight: 600;
+     color: var(--text-primary);
+     letter-spacing: 0.5px;
+   }
+   
+   .ringnex-call-actions {
+     padding: 16px 20px;
+     display: flex;
+     justify-content: center;
+     gap: 12px;
+     flex-wrap: wrap;
+   }
+   
+   .ringnex-action-btn {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 6px;
+     padding: 10px;
+     border-radius: var(--r-lg);
+     background: var(--bg-surface);
+     border: 1px solid var(--border);
+     box-shadow: var(--shadow-xs);
+     transition: all var(--dur-fast) ease;
+     min-width: 72px;
+     cursor: pointer;
+     font-size: 11px;
+     color: var(--text-secondary);
+   }
+   
+   .ringnex-action-btn:hover {
+     border-color: var(--border-accent);
+     background: var(--accent-light);
+     color: var(--accent);
+     box-shadow: var(--shadow-accent);
+     transform: translateY(-2px);
+   }
+   
+   .ringnex-action-btn.active {
+     background: var(--accent);
+     color: #fff;
+     border-color: var(--accent);
+   }
+   
+   .ringnex-hangup {
+     background: var(--err-light) !important;
+     color: var(--err) !important;
+     border-color: rgba(208,40,26,0.15) !important;
+   }
+   
+   .ringnex-hangup:hover {
+     background: var(--err) !important;
+     color: #fff !important;
+     box-shadow: var(--err-glow) !important;
+   }
+   
+   /* ── Page layout ─────────────────────────────────────────────── */
+   .ringnex-page {
+     padding: 28px 28px 20px;
+     height: 100%;
+     overflow: hidden;
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .ringnex-page-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 20px;
+   }
+   
+   .ringnex-title {
+     font-size: 22px;
+     font-weight: 700;
+     color: var(--text-primary);
+     letter-spacing: -0.4px;
+   }
+   
+   /* ── Buttons ─────────────────────────────────────────────────── */
+   .ringnex-btn-primary,
+   .ringnex-btn-secondary,
+   .ringnex-btn-outline,
+   .ringnex-btn-danger,
+   .ringnex-btn-danger-sm {
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     border-radius: var(--r-full);
+     font-family: var(--font-sans);
+     font-weight: 600;
+     font-size: 13.5px;
+     cursor: pointer;
+     transition: all var(--dur-fast) ease;
+     border: 1px solid transparent;
+     white-space: nowrap;
+   }
+   
+   .ringnex-btn-primary {
+     background: var(--accent);
+     color: #fff;
+     padding: 9px 20px;
+     box-shadow: var(--shadow-accent);
+   }
+   
+   .ringnex-btn-primary:hover {
+     background: var(--accent-hover);
+     box-shadow: 0 6px 24px rgba(91,91,214,0.30);
+     transform: translateY(-1px);
+   }
+   
+   .ringnex-btn-secondary {
+     background: var(--bg-surface);
+     color: var(--text-secondary);
+     border-color: var(--border-strong);
+     padding: 9px 20px;
+   }
+   
+   .ringnex-btn-secondary:hover { background: var(--bg-surface-2); color: var(--text-primary); }
+   
+   .ringnex-btn-outline {
+     background: transparent;
+     color: var(--accent);
+     border-color: var(--border-accent);
+     padding: 9px 20px;
+   }
+   
+   .ringnex-btn-outline:hover { background: var(--accent-light); }
+   
+   .ringnex-btn-danger {
+     background: var(--err-light);
+     color: var(--err);
+     border-color: rgba(208,40,26,0.15);
+     padding: 9px 20px;
+   }
+   
+   .ringnex-btn-danger:hover { background: var(--err); color: #fff; box-shadow: var(--err-glow); }
+   
+   .ringnex-btn-danger-sm {
+     width: 36px; height: 36px;
+     padding: 0;
+     background: var(--err-light);
+     color: var(--err);
+     border-radius: var(--r-md);
+     border-color: rgba(208,40,26,0.12);
+     justify-content: center;
+     flex-shrink: 0;
+   }
+   
+   .ringnex-btn-danger-sm:hover { background: var(--err); color: #fff; }
+   
+   /* ── Search ──────────────────────────────────────────────────── */
+   .ringnex-search-container { position: relative; margin-bottom: 20px; }
+   
+   .ringnex-search-icon {
+     position: absolute;
+     left: 14px;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 16px;
+     height: 16px;
+     color: var(--text-tertiary);
+     pointer-events: none;
+   }
+   
+   .ringnex-search-input {
+     width: 100%;
+     padding: 10px 14px 10px 40px;
+     border: 1px solid var(--border-strong);
+     border-radius: var(--r-full);
+     font-size: 13.5px;
+     background: var(--bg-surface);
+     color: var(--text-primary);
+     outline: none;
+     transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+     box-shadow: var(--shadow-xs);
+   }
+   
+   .ringnex-search-input::placeholder { color: var(--text-tertiary); }
+   
+   .ringnex-search-input:focus {
+     border-color: var(--accent);
+     box-shadow: 0 0 0 3px rgba(91,91,214,0.12);
+   }
+   
+   /* ── Contacts ────────────────────────────────────────────────── */
+   .ringnex-contacts-scroll { flex: 1; overflow-y: auto; padding-right: 4px; }
+   .ringnex-contact-group { margin-bottom: 28px; }
+   
+   .ringnex-letter-header {
+     font-size: 11px;
+     font-weight: 700;
+     color: var(--text-tertiary);
+     text-transform: uppercase;
+     letter-spacing: 1.2px;
+     margin-bottom: 8px;
+     padding: 0 2px;
+   }
+   
+   .ringnex-contact-item {
+     display: flex;
+     align-items: center;
+     gap: 14px;
+     padding: 12px 14px;
+     background: var(--bg-surface);
+     border-radius: var(--r-lg);
+     border: 1px solid transparent;
+     margin-bottom: 4px;
+     cursor: pointer;
+     transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+   }
+   
+   .ringnex-contact-item:hover {
+     border-color: var(--border);
+     box-shadow: var(--shadow-sm);
+   }
+   
+   .ringnex-contact-avatar {
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     background: var(--accent-light);
+     color: var(--accent);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: 700;
+     font-size: 15px;
+     flex-shrink: 0;
+   }
+   
+   .ringnex-contact-name  { font-size: 13.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+   .ringnex-contact-company { font-size: 12px; color: var(--text-secondary); margin-bottom: 2px; }
+   .ringnex-contact-number { font-size: 11px; color: var(--accent); font-family: var(--font-mono); font-weight: 600; }
+   
+   /* ── Inputs & Forms ─────────────────────────────────────────── */
+   .ringnex-input,
+   .ringnex-select {
+     width: 100%;
+     padding: 10px 14px;
+     border: 1px solid var(--border-strong);
+     border-radius: var(--r-md);
+     font-size: 13.5px;
+     font-family: var(--font-sans);
+     background: var(--bg-surface);
+     color: var(--text-primary);
+     outline: none;
+     transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+   }
+   
+   .ringnex-input:focus,
+   .ringnex-select:focus {
+     border-color: var(--accent);
+     box-shadow: 0 0 0 3px rgba(91,91,214,0.10);
+   }
+   
+   .ringnex-input::placeholder { color: var(--text-tertiary); }
+   
+   .ringnex-select {
+     appearance: none;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B6B7B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+     background-repeat: no-repeat;
+     background-position: right 12px center;
+     background-size: 14px;
+     padding-right: 36px;
+     cursor: pointer;
+   }
+   
+   .ringnex-form-group { display: flex; flex-direction: column; gap: 6px; }
+   .ringnex-form-group label { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+   .ringnex-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+   
+   @media (max-width: 768px) {
+     .ringnex-form-grid { grid-template-columns: 1fr; }
+     .col-span-2 { grid-column: span 1; }
+   }
+   
+   /* Floating label input */
+   .input-group,
+   .input-wrapper { position: relative; width: 100%; color: var(--text-primary); }
+   
+   .input-group input,
+   .input-group textarea,
+   .input-group select,
+   .input-wrapper input {
+     width: 100%;
+     padding: 18px 14px 7px 42px;
+     font-size: 13.5px;
+     font-weight: 500;
+     font-family: var(--font-sans);
+     border-radius: var(--r-md);
+     border: 1px solid var(--border-strong);
+     background: var(--bg-surface);
+     color: var(--text-primary);
+     outline: none;
+     transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+   }
+   
+   .input-group input:focus,
+   .input-group textarea:focus,
+   .input-group select:focus,
+   .input-wrapper input:focus {
+     border-color: var(--accent);
+     box-shadow: 0 0 0 3px rgba(91,91,214,0.10);
+   }
+   
+   .input-group label,
+   .input-wrapper label {
+     position: absolute;
+     top: 9px;
+     left: 42px;
+     font-size: 12px;
+     font-weight: 600;
+     color: var(--text-tertiary);
+     pointer-events: none;
+     transition: all var(--dur-fast) ease;
+   }
+   
+   .input-group input:focus + label,
+   .input-group input:not(:placeholder-shown) + label,
+   .input-wrapper input:focus + label,
+   .input-wrapper input:not(:placeholder-shown) + label {
+     top: 4px;
+     font-size: 10px;
+     color: var(--accent);
+   }
+   
+   .input-group .input-icon,
+   .input-wrapper .input-icon {
+     position: absolute;
+     left: 13px;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 17px;
+     height: 17px;
+     color: var(--text-tertiary);
+     pointer-events: none;
+   }
+   
+   .input-group textarea { min-height: 100px; resize: vertical; }
+   
+   .input-group select {
+     padding: 14px 36px 7px 42px;
+     appearance: none;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236B6B7B' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+     background-position: right 12px center;
+     background-repeat: no-repeat;
+     background-size: 14px;
+     cursor: pointer;
+   }
+   
+   /* ── Modal ───────────────────────────────────────────────────── */
+   .ringnex-modal-backdrop {
+     position: fixed;
+     inset: 0;
+     background: rgba(0, 0, 0, 0.40);
+     backdrop-filter: blur(8px);
+     -webkit-backdrop-filter: blur(8px);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     z-index: 9999;
+     padding: 16px;
+     animation: fade-in var(--dur-fast) ease both;
+   }
+   
+   @keyframes fade-in {
+     from { opacity: 0; }
+     to   { opacity: 1; }
+   }
+   
+   .ringnex-modal {
+     background: var(--bg-surface);
+     border: 1px solid var(--border);
+     border-radius: var(--r-2xl);
+     width: 100%;
+     max-width: 860px;
+     max-height: 92vh;
+     overflow: hidden;
+     box-shadow: var(--shadow-xl);
+     display: flex;
+     flex-direction: column;
+     animation: scale-in var(--dur-base) var(--ease-spring) both;
+   }
+   
+   .ringnex-modal-header {
+     padding: 20px 24px;
+     background: var(--bg-surface);
+     border-bottom: 1px solid var(--border);
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     flex-shrink: 0;
+   }
+   
+   .ringnex-modal-title { font-size: 17px; font-weight: 700; color: var(--text-primary); }
+   
+   .ringnex-close-btn {
+     background: var(--bg-surface-2);
+     border: 1px solid var(--border);
+     width: 32px; height: 32px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all var(--dur-fast) ease;
+     color: var(--text-secondary);
+   }
+   
+   .ringnex-close-btn:hover { background: var(--err-light); color: var(--err); border-color: rgba(208,40,26,0.15); transform: rotate(90deg); }
+   
+   .ringnex-modal-body { flex: 1; overflow-y: auto; padding: 24px; }
+   
+   .ringnex-modal-footer {
+     padding: 16px 24px;
+     background: var(--bg-surface-2);
+     border-top: 1px solid var(--border);
+     display: flex;
+     justify-content: flex-end;
+     gap: 10px;
+     flex-shrink: 0;
+   }
+   
+   /* Bootstrap modal overrides */
+   .modal-backdrop.show { backdrop-filter: blur(8px); background-color: rgba(0,0,0,0.35); }
+   .modal-content { border-radius: var(--r-xl) !important; box-shadow: var(--shadow-xl) !important; border: 1px solid var(--border) !important; }
+   
+   /* Internal modal style (myaio) */
+   .myaio-backdrop { background: rgba(0,0,0,0.35); backdrop-filter: blur(8px); }
+   .myaio-modal {
+     border-radius: var(--r-xl);
+     border: 1px solid var(--border);
+     box-shadow: var(--shadow-xl);
+     background: var(--bg-surface);
+     overflow: hidden;
+   }
+   
+   .myaio-modal-header { padding: 18px 22px; border-bottom: 1px solid var(--border); }
+   .myaio-modal-header h3 { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+   .myaio-modal-body { padding: 20px 22px; }
+   .myaio-modal-body .primary-text { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+   .myaio-modal-body .secondary-text { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+   .myaio-modal-footer { padding: 16px 22px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid var(--border); }
+   
+   .btn-cancel {
+     padding: 8px 18px;
+     font-size: 13px;
+     border-radius: var(--r-md);
+     background: var(--bg-surface-2);
+     color: var(--text-primary);
+     border: 1px solid var(--border-strong);
+     cursor: pointer;
+     font-family: var(--font-sans);
+     font-weight: 500;
+     transition: background var(--dur-fast) ease;
+   }
+   
+   .btn-cancel:hover { background: var(--bg-surface); }
+   
+   .btn-danger {
+     padding: 8px 18px;
+     font-size: 13px;
+     border-radius: var(--r-md);
+     background: var(--err);
+     color: #fff;
+     border: none;
+     cursor: pointer;
+     font-family: var(--font-sans);
+     font-weight: 600;
+     box-shadow: var(--err-glow);
+     transition: box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease;
+   }
+   
+   .btn-danger:hover { box-shadow: 0 8px 24px rgba(208,40,26,0.30); transform: translateY(-1px); }
+   
+   /* ── Table ───────────────────────────────────────────────────── */
+   .ringnex-table {
+     width: 100%;
+     border-collapse: collapse;
+     font-size: 13.5px;
+   }
+   
+   .ringnex-table thead { background: var(--bg-surface-2); }
+   
+   .ringnex-table th {
+     text-align: left;
+     padding: 11px 14px;
+     font-size: 11px;
+     font-weight: 700;
+     color: var(--text-tertiary);
+     text-transform: uppercase;
+     letter-spacing: 0.8px;
+     border-bottom: 1px solid var(--border);
+   }
+   
+   .ringnex-table td {
+     padding: 12px 14px;
+     border-bottom: 1px solid var(--border);
+     vertical-align: middle;
+     color: var(--text-primary);
+   }
+   
+   .ringnex-table tbody tr { transition: background var(--dur-fast) ease; }
+   .ringnex-table tbody tr:hover { background: var(--bg-hover); }
+   
+   .user-cell { display: flex; align-items: center; gap: 10px; }
+   
+   .avatar-sm {
+     width: 32px; height: 32px;
+     border-radius: 50%;
+     background: var(--accent-light);
+     color: var(--accent);
+     font-weight: 700;
+     font-size: 13px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-shrink: 0;
+   }
+   
+   .log-message { max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+   .log-time    { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; }
+   
+   /* ── Status / Badge ──────────────────────────────────────────── */
+   .badge {
+     display: inline-flex;
+     align-items: center;
+     font-size: 11px;
+     font-weight: 600;
+     padding: 3px 9px;
+     border-radius: var(--r-full);
+     letter-spacing: 0.2px;
+   }
+   
+   /* ── Pulse ring (incoming call) ──────────────────────────────── */
+   .ringnex-pulse-ring {
+     width: 100%; height: 100%;
+     border-radius: 50%;
+     background: var(--ok-glow);
+     animation: pulse-ring 2s ease-out infinite;
+   }
+   
+   @keyframes pulse-ring {
+     0%  { transform: scale(0.85); opacity: 0.6; }
+     70% { transform: scale(1.45); opacity: 0;   }
+     100%{ transform: scale(0.85); opacity: 0;   }
+   }
+   
+   /* ── Empty / loading states ──────────────────────────────────── */
+   .ringnex-empty,
+   .ringnex-empty-state,
+   .ringnex-loading {
+     text-align: center;
+     padding: 60px 20px;
+     color: var(--text-tertiary);
+   }
+   
+   .ringnex-empty-icon {
+     width: 56px; height: 56px;
+     border-radius: 50%;
+     background: var(--accent-light);
+     color: var(--accent);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto 16px;
+   }
+   
+   /* ── Gradient backgrounds (status cards) ────────────────────── */
+   .gradient-ready   { background: linear-gradient(135deg, #22c55e, var(--ok)); box-shadow: 0 8px 20px rgba(23,163,99,0.30); }
+   .gradient-paused  { background: linear-gradient(135deg, #f97316, #ea580c);   box-shadow: 0 8px 20px rgba(249,115,22,0.30); }
+   .gradient-oncall  { background: linear-gradient(135deg, #5B5BD6, #4A4AC9);   box-shadow: var(--shadow-accent); }
+   .gradient-queue   { background: linear-gradient(135deg, #ef4444, #dc2626);   box-shadow: 0 8px 20px rgba(239,68,68,0.28); }
+   
+   /* Brand-color shortcuts (used in some components) */
+   .color-orange,
+   .color-primary { color: var(--accent); }
+   .bg-orange { background-color: var(--accent); }
+   .bg-ringnex { background-color: var(--accent); }
+   
+   /* ── Checkbox & Radio ────────────────────────────────────────── */
+   .ringnex-checkbox {
+     appearance: none;
+     -webkit-appearance: none;
+     width: 18px; height: 18px;
+     border: 1.5px solid var(--border-accent);
+     border-radius: var(--r-sm);
+     background: var(--bg-surface);
+     cursor: pointer;
+     position: relative;
+     display: inline-block;
+     transition: all var(--dur-fast) ease;
+     vertical-align: middle;
+   }
+   
+   .ringnex-checkbox:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(91,91,214,0.12); }
+   .ringnex-checkbox:checked { background: var(--accent); border-color: var(--accent); }
+   .ringnex-checkbox:checked::after {
+     content: "";
+     position: absolute;
+     left: 5px; top: 1px;
+     width: 5px; height: 9px;
+     border: solid #fff;
+     border-width: 0 2px 2px 0;
+     transform: rotate(45deg);
+   }
+   
+   .ringnex-radio {
+     appearance: none;
+     -webkit-appearance: none;
+     width: 17px; height: 17px;
+     border: 1.5px solid var(--border-accent);
+     border-radius: 50%;
+     background: var(--bg-surface);
+     cursor: pointer;
+     position: relative;
+     display: inline-block;
+     transition: all var(--dur-fast) ease;
+     vertical-align: middle;
+   }
+   
+   .ringnex-radio:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(91,91,214,0.12); }
+   .ringnex-radio:checked { border-color: var(--accent); }
+   .ringnex-radio:checked::after {
+     content: "";
+     position: absolute;
+     top: 3px; left: 3px;
+     width: 9px; height: 9px;
+     background: var(--accent);
+     border-radius: 50%;
+   }
+   
+   /* ── Misc overrides ──────────────────────────────────────────── */
+   .remark-text { color: var(--text-primary); }
+   
+   .remark-actions { display: flex; gap: 8px; }
+   .remark-actions button { background: none; border: none; cursor: pointer; }
+   
+   .remark-attachment {
+     display: inline-flex;
+     align-items: center;
+     gap: 5px;
+     font-size: 12px;
+     color: var(--accent);
+     background: none;
+     border: none;
+     cursor: pointer;
+     padding: 0;
+   }
+   
+   .remark-attachment:hover { text-decoration: underline; }
+   
+   /* Supervisor header */
+   .supervisor_header { background: linear-gradient(135deg, var(--accent), #3939B6); }
+   
+   /* FullCalendar text */
+   .fc-toolbar-title           { color: var(--text-primary); }
+   .fc-daygrid-day-number,
+   .fc-col-header-cell-cushion,
+   .fc-timegrid-slot-label-cushion,
+   .fc-scrollgrid-shrink-cushion { color: var(--text-primary); text-decoration: none; }
+   
+   /* Custom text theming */
+   .custom-text { color: var(--text-primary); }
+   
+   /* Dialer modal version */
+   .ringnex-dialpad-modal {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 8px;
+     max-width: 220px;
+   }
+   
+   /* Misc layout */
+   .no-p-margin p { margin: 0; }
+   .mr-3         { margin-right: 10px; }
+   .pl-14        { padding-left: 50px !important; }
+   .imp-mg       { margin-left: 10px !important; }
+   .text-22      { font-size: 14px; }
+   .text-xl      { font-size: 20px; padding: 8px 0; }
+   
+   /* react-select z-index fix */
+   .css-1lxb5l0-menu { z-index: 9999 !important; }
+   .css-1ym0jkk-control { z-index: 9999; }
+   
+   /* Card height */
+   .ringnex-card-height { height: 96% !important; max-height: 60%; }
+   
+   /* Shine on hover */
+   .shine-effect { position: relative; overflow: hidden; }
+   .shine-effect::before {
+     content: '';
+     position: absolute;
+     top: -50%; left: -50%;
+     width: 200%; height: 200%;
+     background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+     transform: translateX(-100%) rotate(30deg);
+     transition: transform 0.7s;
+   }
+   .shine-effect:hover::before { transform: translateX(100%) rotate(30deg); }
+   
+   /* ── Gradient header bar ─────────────────────────────────────── */
+   .header-top-gradient { background: linear-gradient(90deg, var(--accent), #3939B6); }
+   .gradient-ringnex { background: linear-gradient(135deg, var(--accent), #3939B6); }
+   .text-gradient-ringnex {
+     background: linear-gradient(90deg, var(--accent), #3939B6);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+   }
+  

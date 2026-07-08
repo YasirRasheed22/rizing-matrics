@@ -1,0 +1,264 @@
+/* ============================================================
+   SIDEBAR — Frosted glass, premium light mode
+   ============================================================ */
+
+   .myaio-sidebar {
+    position: fixed;
+    inset-y: 0;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  
+    /* Frosted glass surface */
+    background:      rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 1px 0 0 rgba(0, 0, 0, 0.04);
+  }
+  
+  /* ── Logo row ────────────────────────────────────────────────── */
+  .sidebar-logo {
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  
+  .logo-text {
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #0D0D12;
+  }
+  
+  /* ── Scrollable nav ──────────────────────────────────────────── */
+  .sidebar-nav.scrollable {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 8px 4px;
+    scrollbar-width: none;
+  }
+  
+  .sidebar-nav.scrollable::-webkit-scrollbar { width: 0; }
+  .sidebar-nav { padding: 8px; }
+  
+  /* ── Nav links ───────────────────────────────────────────────── */
+  .sidebar-link,
+  .myaio-navitem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 11px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #6B6B7B;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease;
+    width: 100%;
+    margin-bottom: 1px;
+    position: relative;
+  }
+  
+  .sidebar-link:hover,
+  .myaio-navitem:hover {
+    background: rgba(91, 91, 214, 0.07);
+    color: #0D0D12;
+  }
+  
+  .sidebar-link.active,
+  .myaio-navitem.active {
+    background: rgba(91, 91, 214, 0.10);
+    color: #5B5BD6;
+    font-weight: 600;
+  }
+  
+  /* No ::before indicator on active — clean flat style */
+  .myaio-sidebar .sidebar-link.active::before { display: none; }
+  
+  .sidebar-link svg,
+  .myaio-navitem svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    opacity: 0.75;
+  }
+  
+  .sidebar-link.active svg,
+  .myaio-navitem.active svg { opacity: 1; }
+  
+  /* Collapsed center alignment */
+  .myaio-navitem.collapsed {
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  /* ── Submenu (expanded) ──────────────────────────────────────── */
+  .submenu { padding-left: 38px; }
+  
+  .submenu-item,
+  .myaio-subitem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: #6B6B7B;
+    text-decoration: none;
+    transition: background 140ms ease, color 140ms ease;
+    cursor: pointer;
+    margin-bottom: 1px;
+  }
+  
+  .submenu-item:hover,
+  .myaio-subitem:hover {
+    background: rgba(91, 91, 214, 0.06);
+    color: #0D0D12;
+  }
+  
+  .submenu-item.active,
+  .myaio-subitem.active {
+    background: rgba(91, 91, 214, 0.09);
+    color: #5B5BD6;
+    font-weight: 600;
+  }
+  
+  /* ── Floating submenu (collapsed sidebar) ────────────────────── */
+  .submenu-float {
+    position: absolute;
+    left: calc(100% + 8px);
+    top: 0;
+    z-index: 9999;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 14px;
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    padding: 6px;
+    min-width: 196px;
+    animation: submenu-in 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  
+  @keyframes submenu-in {
+    from { opacity: 0; transform: scale(0.95) translateX(-6px); }
+    to   { opacity: 1; transform: scale(1)    translateX(0); }
+  }
+  
+  /* ── Footer / logout ─────────────────────────────────────────── */
+  .sidebar-footer {
+    flex-shrink: 0;
+    padding: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  
+  .sidebar-link.logout {
+    color: #D0281A;
+  }
+  
+  .sidebar-link.logout:hover {
+    background: rgba(208, 40, 26, 0.07);
+    color: #D0281A;
+  }
+  
+  /* ── Chevron ─────────────────────────────────────────────────── */
+  .chev {
+    margin-left: auto;
+    transition: transform 220ms ease;
+    opacity: 0.5;
+  }
+  
+  .chev.rot { transform: rotate(180deg); }
+  
+  /* ── Mobile backdrop ─────────────────────────────────────────── */
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  
+  /* ── Icon size ───────────────────────────────────────────────── */
+  .icon { width: 17px; height: 17px; }
+  
+  /* ── Dark Mode ───────────────────────────────────────────────── */
+  [data-theme="dark"] .myaio-sidebar {
+    background:      rgba(23, 23, 31, 0.92);
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.04);
+  }
+  
+  [data-theme="dark"] .sidebar-logo {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  [data-theme="dark"] .logo-text {
+    color: #F0F0F5;
+  }
+  
+  [data-theme="dark"] .sidebar-link,
+  [data-theme="dark"] .myaio-navitem {
+    color: #A0A0B0;
+  }
+  
+  [data-theme="dark"] .sidebar-link:hover,
+  [data-theme="dark"] .myaio-navitem:hover {
+    background: rgba(124, 124, 240, 0.08);
+    color: #F0F0F5;
+  }
+  
+  [data-theme="dark"] .sidebar-link.active,
+  [data-theme="dark"] .myaio-navitem.active {
+    background: rgba(124, 124, 240, 0.14);
+    color: #7C7CF0;
+  }
+  
+  [data-theme="dark"] .submenu-item,
+  [data-theme="dark"] .myaio-subitem {
+    color: #A0A0B0;
+  }
+  
+  [data-theme="dark"] .submenu-item:hover,
+  [data-theme="dark"] .myaio-subitem:hover {
+    background: rgba(124, 124, 240, 0.07);
+    color: #F0F0F5;
+  }
+  
+  [data-theme="dark"] .submenu-item.active,
+  [data-theme="dark"] .myaio-subitem.active {
+    background: rgba(124, 124, 240, 0.12);
+    color: #7C7CF0;
+  }
+  
+  [data-theme="dark"] .submenu-float {
+    background: #1E1E28;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.50), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+  
+  [data-theme="dark"] .sidebar-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  [data-theme="dark"] .sidebar-link.logout {
+    color: #F87171;
+  }
+  
+  [data-theme="dark"] .sidebar-link.logout:hover {
+    background: rgba(248, 113, 113, 0.10);
+    color: #F87171;
+  }
+  
+  [data-theme="dark"] .sidebar-backdrop {
+    background: rgba(0, 0, 0, 0.55);
+  }

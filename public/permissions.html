@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ringnex (Beta) Permissions</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont;
+      background: #fff;
+      padding: 30px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #007aff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Allow Required Permissions</h2>
+  <p>Ringnex (Beta) needs the following permissions to work properly:</p>
+  <ul>
+    <li>🔔 Notifications</li>
+    <li>🎤 Microphone</li>
+    <li>🔊 Audio Output</li>
+  </ul>
+
+  <button onclick="request()">Allow & Continue</button>
+
+  <script>
+    function request() {
+      window.electronAPI?.notify('Testing', 'Testing Notification');
+    }
+  </script>
+</body>
+</html>
+

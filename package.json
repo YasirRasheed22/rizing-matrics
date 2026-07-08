@@ -1,0 +1,186 @@
+{
+  "name": "ringnex-beta",
+  "private": true,
+  "author": "Unisoftwares Inc",
+  "description": "This product made by Unisoftwares",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron-dist/main.cjs",
+  "scripts": {
+    "dev": "vite --force",
+    "build:renderer": "rimraf dist && tsc -b && vite build",
+    "build:electron": "tsc -p tsconfig.electron.json && shx mv electron-dist/main.js electron-dist/main.cjs && shx mv electron-dist/preload.js electron-dist/preload.cjs",
+    "dev:electron": "concurrently -k \"vite --port 3001 --force\" \"wait-on http://localhost:3001 && electron .\"",
+    "build": "npm run build:renderer && npm run build:electron",
+    "dist": "npm run build && electron-builder",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:all": "npm run build && electron-builder --mac --win",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "build": {
+    "appId": "com.ringnex.voice",
+    "productName": "Ringnex (Beta)",
+    "directories": {
+      "output": "release"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "YasirRasheed22",
+        "repo": "rizing-matrics",
+        "releaseType": "release"
+      }
+    ],
+    "files": [
+      "dist/**",
+      "electron-dist/**",
+      "package.json"
+    ],
+    "mac": {
+      "icon": "mac-icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.business",
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.plist",
+      "minimumSystemVersion": "10.13",
+      "entitlementsInherit": "entitlements.mac.plist",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "This app needs microphone access for voice calling.",
+        "NSUserNotificationUsageDescription": "Ringnex uses notifications to alert you about calls, messages, and system events.",
+        "NSCameraUsageDescription": "This app may require camera access for calls.",
+        "NSDocumentsFolderUsageDescription": "This app needs access to documents.",
+        "NSDownloadsFolderUsageDescription": "This app needs access to downloads.",
+        "NSCameraUseContinuityCameraDeviceType": "This app needs access to record.",
+        "NSNetworkClientUsageDescription": "This app needs internet access."
+      }
+    },
+    "win": {
+      "icon": "win-icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Ringnex (Beta)",
+      "installerIcon": "win-icon.ico",
+      "uninstallerIcon": "win-icon.ico",
+      "installerHeaderIcon": "win-icon.ico",
+      "license": null
+    }
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@fullcalendar/daygrid": "^6.1.20",
+    "@fullcalendar/interaction": "^6.1.20",
+    "@fullcalendar/react": "^6.1.20",
+    "@fullcalendar/timegrid": "^6.1.20",
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-avatar": "^1.1.11",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@stripe/react-stripe-js": "^6.6.0",
+    "@stripe/stripe-js": "^9.7.0",
+    "@tanstack/react-table": "^8.21.3",
+    "@tiptap/extension-code-block-lowlight": "^3.18.0",
+    "@tiptap/extension-image": "^3.18.0",
+    "@tiptap/extension-link": "^3.18.0",
+    "@tiptap/extension-underline": "^3.18.0",
+    "@tiptap/pm": "^3.18.0",
+    "@tiptap/react": "^3.18.0",
+    "@tiptap/starter-kit": "^3.18.0",
+    "@twilio/voice-sdk": "^2.16.0",
+    "assemblyai": "^4.22.1",
+    "axios": "^1.13.2",
+    "bootstrap": "^5.3.8",
+    "chart.js": "^4.5.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "electron-updater": "^6.8.3",
+    "emoji-picker-react": "^4.15.1",
+    "firebase": "^12.6.0",
+    "framer-motion": "^12.23.24",
+    "jspdf": "^4.0.0",
+    "jspdf-autotable": "^5.0.7",
+    "libphonenumber-js": "^1.12.26",
+    "lowlight": "^3.3.0",
+    "lucide-react": "^0.553.0",
+    "react": "^19.2.0",
+    "react-bootstrap": "^2.10.10",
+    "react-chartjs-2": "^5.3.1",
+    "react-datepicker": "^9.1.0",
+    "react-dom": "^19.2.0",
+    "react-h5-audio-player": "^3.10.1",
+    "react-hook-form": "^7.66.0",
+    "react-hot-toast": "^2.6.0",
+    "react-modal": "^3.16.3",
+    "react-router-dom": "^7.9.5",
+    "react-select": "^5.10.2",
+    "react-window": "^2.2.3",
+    "readme-md-generator": "^1.0.0",
+    "recharts": "^3.4.1",
+    "socket.io-client": "^4.8.1",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "xlsx": "^0.18.5",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.4.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "png-to-ico": "^3.0.1",
+    "postcss": "^8.5.6",
+    "rimraf": "^6.1.3",
+    "shx": "^0.4.0",
+    "tailwindcss": "^4.1.17",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.3",
+    "vite": "^7.2.2",
+    "wait-on": "^9.0.3"
+  }
+}
