@@ -50,6 +50,7 @@ const Api = lazy(() => import("./pages/admin/Api"));
 const SettingsCompany = lazy(() => import("./pages/admin/SettingsCompany"));
 const SettingsSecurity = lazy(() => import("./pages/admin/SettingsSecurity"));
 const SettingsBilling = lazy(() => import("./pages/admin/SettingsBilling"));
+const BillingEnterprise = lazy(() => import("./pages/admin/BillingEnterprise"));
 const Reports = lazy(() => import("./pages/admin/Reports"));
 const AgentDetailPage = lazy(() => import("./pages/admin/AgentDetailPage"));
 const TeamDetailPage = lazy(() => import("./pages/admin/TeamDetailPage"));
@@ -209,7 +210,8 @@ function AppRoutes() {
             <Route path="/admin/api" element={<Api />} />
             <Route path="/admin/settings/company" element={<SettingsCompany />} />
             <Route path="/admin/settings/security" element={<SettingsSecurity />} />
-            <Route path="/admin/settings/billing" element={<SettingsBilling />} />
+            <Route path="/admin/settings/billing" element={<BillingEnterprise />} />
+            <Route path="/admin/settings/billing/enterprise" element={<BillingEnterprise />} />
             <Route path="/admin/settings/roles" element={<RolesPage />} />
             <Route path="/admin/scripts" element={<ScriptsPage />} />
             <Route path="/admin/scripts/:id" element={<ScriptEditorPage />} />
@@ -764,7 +766,7 @@ export default function App() {
                       height: "100vh",
                     }}
                   >
-                    <div className="ringnex-spinner"></div>
+                    <div className="Ringnex-spinner"></div>
                   </div>
                 }
               >

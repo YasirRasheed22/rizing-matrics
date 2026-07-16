@@ -142,7 +142,7 @@
 //   });
  
 //     const stream = twiml.start().stream({
-//       url: "wss://api.rizingmatrics.com/media-stream",
+//       url: "wss://api.aiocaller.com/media-stream",
 //     });
 //     stream.parameter({
 //     conference: conferenceFriendlyName,
@@ -212,7 +212,7 @@
 //   }
  
 //    const stream = twiml.start().stream({
-//       url: "wss://api.rizingmatrics.com/media-stream",
+//       url: "wss://api.aiocaller.com/media-stream",
 //     });
     
 //     stream.parameter({
@@ -277,7 +277,7 @@
 //   const twiml = new twilio.twiml.VoiceResponse();
   
 //     const stream = twiml.start().stream({
-//       url: "wss://api.rizingmatrics.com/media-stream",
+//       url: "wss://api.aiocaller.com/media-stream",
 //     });
 //     stream.parameter({
 //     conference: conferenceFriendlyName,

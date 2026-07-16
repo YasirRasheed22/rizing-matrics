@@ -31,7 +31,7 @@ export default function IVRRoutingTab() {
         Routing Rules
       </h3>
 
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-8">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-8">
 
         {/* ROUTING TYPE */}
         <div>
@@ -40,7 +40,7 @@ export default function IVRRoutingTab() {
           <select
             value={routing.type}
             onChange={(e) => setRouting({ ...routing, type: e.target.value })}
-            className="ringnex-input mt-3 w-80"
+            className="Ringnex-input mt-3 w-80"
           >
             {routingTypes.map((r) => (
               <option key={r.value} value={r.value}>
@@ -58,7 +58,7 @@ export default function IVRRoutingTab() {
                 <br></br>
           <input
             type="text"
-            className="ringnex-input mt-3 w-80"
+            className="Ringnex-input mt-3 w-80"
             placeholder="Queue name, agent, number, IVR, etc."
             value={routing.target}
             onChange={(e) => setRouting({ ...routing, target: e.target.value })}

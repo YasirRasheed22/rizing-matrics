@@ -35,7 +35,7 @@ export default function IVRAdvancedTab() {
       </h3>
 
       {/* INPUT TIMEOUT */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
         <label className="text-sm font-bold flex items-center gap-2 text-gray-700">
           <Clock className="text-blue-600" />
           Input Timeout (seconds)
@@ -43,14 +43,14 @@ export default function IVRAdvancedTab() {
         <input
           type="number"
           min={1}
-          className="ringnex-input w-80 mt-3"
+          className="Ringnex-input w-80 mt-3"
           value={settings.inputTimeout}
           onChange={(e) => update("inputTimeout", e.target.value)}
         />
       </div>
 
       {/* MAX RETRIES */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
         <label className="text-sm font-bold flex items-center gap-2 text-gray-700">
           <RotateCw className="text-orange-500" />
           Max Retry Attempts
@@ -58,21 +58,21 @@ export default function IVRAdvancedTab() {
         <input
           type="number"
           min={1}
-          className="ringnex-input w-80 mt-3"
+          className="Ringnex-input w-80 mt-3"
           value={settings.maxRetries}
           onChange={(e) => update("maxRetries", e.target.value)}
         />
       </div>
 
       {/* INVALID KEY ACTION */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
         <label className="text-sm font-bold flex items-center gap-2 text-gray-700">
           <KeyRound className="text-red-500" />
           Action on Invalid Key
         </label>
 
         <select
-          className="ringnex-input"
+          className="Ringnex-input"
           value={settings.invalidAction}
           onChange={(e) => update("invalidAction", e.target.value)}
         >
@@ -84,14 +84,14 @@ export default function IVRAdvancedTab() {
       </div>
 
       {/* NO INPUT ACTION */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
         <label className="text-sm font-bold flex items-center gap-2 text-gray-700">
           <Ban className="text-purple-600" />
           No Input Action
         </label>
 
         <select
-          className="ringnex-input w-80 mt-2"
+          className="Ringnex-input w-80 mt-2"
           value={settings.noInputAction}
           onChange={(e) => update("noInputAction", e.target.value)}
         >
@@ -103,14 +103,14 @@ export default function IVRAdvancedTab() {
       </div>
 
       {/* CALLER ID POLICY */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
         <label className="text-sm font-bold flex items-center gap-2 text-gray-700">
           <Hash className="text-green-600" />
           Caller ID Policy
         </label>
 
         <select
-          className="ringnex-input"
+          className="Ringnex-input"
           value={settings.callerId}
           onChange={(e) => update("callerId", e.target.value)}
         >
@@ -121,7 +121,7 @@ export default function IVRAdvancedTab() {
       </div>
 
       {/* CUSTOM SIP HEADER */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3">
         <label className="text-sm font-bold flex items-center gap-2 text-gray-700">
           <CheckCircle className="text-teal-600" />
           Custom SIP Header (optional)
@@ -129,7 +129,7 @@ export default function IVRAdvancedTab() {
 
         <input
           type="text"
-          className="ringnex-input "
+          className="Ringnex-input "
           placeholder="X-Custom: Value"
           value={settings.sipHeader}
           onChange={(e) => update("sipHeader", e.target.value)}

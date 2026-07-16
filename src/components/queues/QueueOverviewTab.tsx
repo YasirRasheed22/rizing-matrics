@@ -39,7 +39,7 @@ export default function QueueOverviewTab() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-3">
 
         {/* Total Calls */}
-        <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl flex items-center gap-4">
+        <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl flex items-center gap-4">
           <PhoneCall className="w-10 h-10 text-blue-600" />
           <div>
             <p className="text-gray-600 text-sm font-semibold">Total Calls</p>
@@ -48,7 +48,7 @@ export default function QueueOverviewTab() {
         </div>
 
         {/* Answered */}
-        <div className="ringnex-card p-6 rounded-3xl border-2 shadow-xl flex items-center gap-4">
+        <div className="Ringnex-card p-6 rounded-3xl border-2 shadow-xl flex items-center gap-4">
           <CheckCircle className="w-10 h-10 text-emerald-600" />
           <div>
             <p className="text-gray-600 text-sm font-semibold">Answered</p>
@@ -57,7 +57,7 @@ export default function QueueOverviewTab() {
         </div>
 
         {/* Abandoned */}
-        <div className="ringnex-card p-6 rounded-3xl border-2 shadow-xl flex items-center gap-4">
+        <div className="Ringnex-card p-6 rounded-3xl border-2 shadow-xl flex items-center gap-4">
           <AlertTriangle className="w-10 h-10 text-red-600" />
           <div>
             <p className="text-gray-600 text-sm font-semibold">Abandoned</p>
@@ -66,7 +66,7 @@ export default function QueueOverviewTab() {
         </div>
 
         {/* Service Level */}
-        <div className="ringnex-card p-6 rounded-3xl border-2 shadow-xl flex items-center gap-4">
+        <div className="Ringnex-card p-6 rounded-3xl border-2 shadow-xl flex items-center gap-4">
           <Users className="w-10 h-10 text-purple-600" />
           <div>
             <p className="text-gray-600 text-sm font-semibold">Service Level</p>
@@ -76,7 +76,7 @@ export default function QueueOverviewTab() {
       </div>
 
       {/* WAIT TIMES */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-8 mt-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-8 mt-3">
 
         <div className="flex items-center gap-4">
           <Clock className="w-12 h-12 text-orange-500" />
@@ -105,10 +105,10 @@ export default function QueueOverviewTab() {
       </div>
 
       {/* DISTRIBUTION METHOD */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3 mt-3 mb-5">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-3 mt-3 mb-5">
         <h4 classname="text-xl font-bold">Call Distribution Method</h4>
 
-        <select className="ringnex-input w-full text-lg">
+        <select className="Ringnex-input w-full text-lg">
           <option>{stats.distribution}</option>
           <option>Ring All</option>
           <option>Sequential</option>

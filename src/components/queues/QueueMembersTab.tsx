@@ -68,7 +68,7 @@ export default function QueueMembersTab() {
 
         <button
           onClick={() => setShowAddModal(true)}
-          className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
+          className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
         >
           <UserPlus size={22} />
           Add Agents
@@ -81,13 +81,13 @@ export default function QueueMembersTab() {
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="ringnex-input pl-14 pr-4 py-3 rounded-2xl"
+          className="Ringnex-input pl-14 pr-4 py-3 rounded-2xl"
           placeholder="Search agents..."
         />
       </div>
 
       {/* MEMBERS TABLE */}
-      <div className="ringnex-card p-6 rounded-3xl border-2 shadow-xl overflow-x-auto mt-4 mb-5">
+      <div className="Ringnex-card p-6 rounded-3xl border-2 shadow-xl overflow-x-auto mt-4 mb-5">
         <table className="w-full">
           <thead className="bg-gray-50 border-b-2 border-gray-200">
             <tr>
@@ -121,29 +121,29 @@ export default function QueueMembersTab() {
       {/* ADD MEMBER MODAL */}
       {showAddModal && (
         <div
-          className="ringnex-modal-backdrop"
+          className="Ringnex-modal-backdrop"
           onClick={() => setShowAddModal(false)}
         >
           <div
-            className="ringnex-modal max-w-2xl"
+            className="Ringnex-modal max-w-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="ringnex-modal-header">
-              <h2 className="ringnex-modal-title">Add Agents to Queue</h2>
+            <div className="Ringnex-modal-header">
+              <h2 className="Ringnex-modal-title">Add Agents to Queue</h2>
               <button
-                className="ringnex-close-btn"
+                className="Ringnex-close-btn"
                 onClick={() => setShowAddModal(false)}
               >
                 <XCircle size={28} />
               </button>
             </div>
 
-            <div className="ringnex-modal-body space-y-6">
+            <div className="Ringnex-modal-body space-y-6">
 
               <div className="relative w-full">
                 <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
-                  className="ringnex-input pl-14 pr-4 py-3 rounded-2xl"
+                  className="Ringnex-input pl-14 pr-4 py-3 rounded-2xl"
                   placeholder="Search agents..."
                 />
               </div>
@@ -153,14 +153,14 @@ export default function QueueMembersTab() {
                 {allAgents.map((agent) => (
                   <div
                     key={agent.id}
-                    className="p-4 ringnex-card rounded-2xl border flex justify-between items-center"
+                    className="p-4 Ringnex-card rounded-2xl border flex justify-between items-center"
                   >
                     <div className="flex items-center gap-3">
                       <User className="text-blue-500 w-5 h-5" />
                       <span className="font-semibold text-lg">{agent.name}</span>
                     </div>
 
-                    <button className="ringnex-btn-primary px-5 py-2 text-sm">
+                    <button className="Ringnex-btn-primary px-5 py-2 text-sm">
                       Add
                     </button>
                   </div>
@@ -168,9 +168,9 @@ export default function QueueMembersTab() {
               </div>
             </div>
 
-            <div className="ringnex-modal-footer">
+            <div className="Ringnex-modal-footer">
               <button
-                className="ringnex-btn-secondary px-6 py-3"
+                className="Ringnex-btn-secondary px-6 py-3"
                 onClick={() => setShowAddModal(false)}
               >
                 Close

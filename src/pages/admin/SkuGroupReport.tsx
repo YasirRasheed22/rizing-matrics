@@ -105,11 +105,11 @@ export default function SkuGroupReport() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-        <div className="ringnex-page-header flex items-center justify-between">
+        <div className="Ringnex-page-header flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link
             to="/admin/settings/billing"
-            className="ringnex-btn-secondary rounded-2xl px-4 py-2 flex items-center gap-2"
+            className="Ringnex-btn-secondary rounded-2xl px-4 py-2 flex items-center gap-2"
           >
             <ArrowLeft className="w-5 h-5" />
             Back

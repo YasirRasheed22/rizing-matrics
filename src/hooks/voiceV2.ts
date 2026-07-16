@@ -16,7 +16,7 @@ type IncomingCallState = null | {
   conn: Call;
 };
 
-const API_URL = "https://api.rizingmatrics.com";
+const API_URL = "https://api.aiocaller.com";
 
 export function useTwilioDevice({ disabled = false }: { disabled?: boolean } = {}) {
   const { user, token } = useAuth();

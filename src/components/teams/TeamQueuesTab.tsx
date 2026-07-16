@@ -17,7 +17,7 @@ export default function TeamQueuesTab({ teamId }) {
 
       <div className="flex justify-between items-center">
         <h3 className="text-2xl font-bold">Assigned Queues</h3>
-        <button className="ringnex-btn-primary">+ Assign Queue</button>
+        <button className="Ringnex-btn-primary">+ Assign Queue</button>
       </div>
 
       <div className="overflow-x-auto">

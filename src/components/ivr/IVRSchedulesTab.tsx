@@ -49,7 +49,7 @@ export default function IVRSchedulesTab() {
       </h3>
 
       {/* BUSINESS HOURS */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6">
         <h4 className="text-xl font-bold">Business Hours</h4>
 
         <div className="space-y-4">
@@ -61,14 +61,14 @@ export default function IVRSchedulesTab() {
 
               <input
                 type="time"
-                className="ringnex-input"
+                className="Ringnex-input"
                 value={row.start}
                 onChange={(e) => updateHours(i, "start", e.target.value)}
               />
 
               <input
                 type="time"
-                className="ringnex-input"
+                className="Ringnex-input"
                 value={row.end}
                 onChange={(e) => updateHours(i, "end", e.target.value)}
               />
@@ -78,7 +78,7 @@ export default function IVRSchedulesTab() {
       </div>
 
       {/* HOLIDAY SCHEDULES */}
-      <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-8 mt-3">
+      <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-8 mt-3">
         <h4 className="text-xl font-bold flex items-center gap-3">
           <Calendar className="text-blue-600" />
           Holiday Routing
@@ -91,7 +91,7 @@ export default function IVRSchedulesTab() {
               <input
                 type="text"
                 placeholder="Holiday Name"
-                className="ringnex-input"
+                className="Ringnex-input"
                 value={h.name}
                 onChange={(e) => updateHoliday(i, "name", e.target.value)}
               />
@@ -113,7 +113,7 @@ export default function IVRSchedulesTab() {
 
         <button
           onClick={addHoliday}
-          className="ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 mt-4"
+          className="Ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 mt-4"
         >
           <Plus className="w-5 h-5" />
           Add Holiday

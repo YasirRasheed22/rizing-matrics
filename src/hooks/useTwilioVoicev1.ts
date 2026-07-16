@@ -180,7 +180,7 @@ export function useCallEngine() {
   useEffect(() => {
     if (!token) return;
 
-    messageSocket.current = io('https://api.rizingmatrics.com', {
+    messageSocket.current = io('https://api.aiocaller.com', {
       auth: { token },
       transports: ['websocket'],
       reconnectionAttempts: 5,
@@ -390,7 +390,7 @@ export function useCallEngine() {
     getAgentsList();
     init();
     if (!socketRef.current) {
-      socketRef.current = io('https://api.rizingmatrics.com', {
+      socketRef.current = io('https://api.aiocaller.com', {
         transports: ["websocket"],
         auth: { token },
       });

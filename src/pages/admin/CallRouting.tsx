@@ -55,25 +55,25 @@ export default function CallRouting() {
   )
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* HEADER */}
-      <div className="ringnex-page-header">
+      <div className="Ringnex-page-header">
         <div>
-          <h1 className="ringnex-title">Call Routing</h1>
+          <h1 className="Ringnex-title">Call Routing</h1>
           <p className="text-gray-600 text-lg mt-2">
             Manage how incoming calls flow through your system
           </p>
         </div>
 
-        <button className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
+        <button className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
           <Plus size={22} />
           Add Routing Rule
         </button>
       </div>
 
       {/* ROUTING LIST CARD */}
-      <div className="ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
+      <div className="Ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
 
         {/* SEARCH BAR */}
         <div className="mb-6 flex items-center justify-between">
@@ -83,7 +83,7 @@ export default function CallRouting() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
+              className="Ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
               placeholder="Search numbers, labels, or routing..."
             />
           </div>

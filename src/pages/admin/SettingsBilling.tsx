@@ -60,6 +60,10 @@ const TX_CONFIG: Record<string, { label: string; icon: any; color: string; isDeb
   debit_transcription: { label: "Transcription",    icon: FileText,      color: "#0369A1", isDebit: true  },
   debit_sms:           { label: "SMS",              icon: MessageSquare, color: "#D38A00", isDebit: true  },
   debit_mms:           { label: "MMS",              icon: MessageSquare, color: "#C2410C", isDebit: true  },
+  debit_voicemail:     { label: "Voicemail",        icon: Mic,           color: "#0E7490", isDebit: true  },
+  debit_platform_fee:  { label: "Platform Fee",     icon: DollarSign,    color: "#17A363", isDebit: true  },
+  debit_adjustment:    { label: "Reconcile Charge", icon: Activity,      color: "#DC2626", isDebit: true  },
+  credit_adjustment:   { label: "Reconcile Refund", icon: ArrowDownLeft, color: "#17A363", isDebit: false },
   credit_topup:        { label: "Wallet Top-up",    icon: CreditCard,    color: "#17A363", isDebit: false },
   credit_free:         { label: "Free Credits",     icon: Zap,           color: "#17A363", isDebit: false },
   credit_manual:       { label: "Manual Credit",    icon: CheckCircle,   color: "#17A363", isDebit: false },
@@ -307,6 +311,18 @@ export default function SettingsBilling() {
         </div>
 
         <div style={{ display: "flex", gap: 10 }}>
+          <button
+            onClick={() => (window.location.hash = "#/admin/settings/billing/enterprise")}
+            style={{
+              display: "flex", alignItems: "center", gap: 6,
+              padding: "9px 14px", borderRadius: 10,
+              border: `1px solid ${inputBorder}`, background: inputBg,
+              color: accentMain, fontSize: 13, fontWeight: 700,
+              cursor: "pointer", fontFamily: "inherit",
+            }}
+          >
+            <BarChart3 size={13} /> Enterprise Dashboard
+          </button>
           <button
             onClick={fetchWallet}
             style={{

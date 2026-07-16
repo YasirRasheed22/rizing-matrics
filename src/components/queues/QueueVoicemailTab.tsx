@@ -77,7 +77,7 @@ export default function QueueVoicemailTab() {
           type="checkbox"
           checked={enabled}
           onChange={(e) => setEnabled(e.target.checked)}
-          className="ringnex-checkbox"
+          className="Ringnex-checkbox"
         />
         <span className="text-gray-800 font-semibold text-lg">Enable Voicemail</span>
       </label>
@@ -95,7 +95,7 @@ export default function QueueVoicemailTab() {
             <h4 className="text-xl font-bold">Voicemail Greeting</h4>
 
             {!uploadedFile && (
-              <label className="ringnex-card p-4 rounded-3xl border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 transition flex flex-col items-center gap-4 text-center">
+              <label className="Ringnex-card p-4 rounded-3xl border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 transition flex flex-col items-center gap-4 text-center">
                 <Upload className="w-14 h-14 text-orange-500" />
                 <p className="font-semibold text-lg text-gray-700">
                   Upload voicemail greeting (MP3/WAV)
@@ -105,7 +105,7 @@ export default function QueueVoicemailTab() {
             )}
 
             {uploadedFile && (
-              <div className="ringnex-card p-6 rounded-3xl border-2 shadow-xl space-y-6">
+              <div className="Ringnex-card p-6 rounded-3xl border-2 shadow-xl space-y-6">
 
                 {/* FILE HEADER */}
                 <div className="flex justify-between items-center">
@@ -126,7 +126,7 @@ export default function QueueVoicemailTab() {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={handlePlayPause}
-                    className="ringnex-btn-primary rounded-full w-14 h-14 flex items-center justify-center"
+                    className="Ringnex-btn-primary rounded-full w-14 h-14 flex items-center justify-center"
                   >
                     {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
                   </button>
@@ -145,7 +145,7 @@ export default function QueueVoicemailTab() {
           </div>
 
           {/* TTS */}
-          <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
+          <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
 
             <h4 className="text-xl font-bold flex items-center gap-3">
               <Type className="text-blue-600" />
@@ -153,20 +153,20 @@ export default function QueueVoicemailTab() {
             </h4>
 
             <textarea
-              className="ringnex-input w-full text-lg h-32"
+              className="Ringnex-input w-full text-lg h-32"
               placeholder="Type a message for the voicemail greeting..."
               value={ttsText}
               onChange={(e) => setTtsText(e.target.value)}
             />
 
-            <button className="ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 mt-3">
+            <button className="Ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 mt-3">
               <Check className="w-6 h-6" />
               Generate TTS Greeting
             </button>
           </div>
 
           {/* EMAIL NOTIFICATIONS */}
-          <div className="ringnex-card p-4 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
+          <div className="Ringnex-card p-4 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
             <h4 className="text-xl font-bold flex items-center gap-3">
               <Mail className="text-purple-600" />
               Email Notifications
@@ -178,7 +178,7 @@ export default function QueueVoicemailTab() {
                   type="email"
                   value={email}
                   onChange={(e) => updateEmail(index, e.target.value)}
-                  className="ringnex-input w-90"
+                  className="Ringnex-input w-90"
                   placeholder="email@example.com"
                 />
 
@@ -195,7 +195,7 @@ export default function QueueVoicemailTab() {
 
             <button
               onClick={addEmail}
-              className="ringnex-btn-secondary flex items-center gap-2 px-4 py-2 mt-3"
+              className="Ringnex-btn-secondary flex items-center gap-2 px-4 py-2 mt-3"
             >
               <Plus className="w-4 h-4" />
               Add Another Email
@@ -203,7 +203,7 @@ export default function QueueVoicemailTab() {
           </div>
 
           {/* MAX LENGTH */}
-          <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
+          <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
 
             <h4 className="text-xl font-bold flex items-center gap-3">
               <Clock className="text-gray-600" />
@@ -213,7 +213,7 @@ export default function QueueVoicemailTab() {
             <div className="flex items-center gap-4">
               <input
                 type="number"
-                className="ringnex-input w-32"
+                className="Ringnex-input w-32"
                 min={10}
                 max={300}
                 value={maxLength}

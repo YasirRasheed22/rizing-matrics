@@ -85,7 +85,7 @@ export default function RoutingMainTab() {
       </div>
 
       {/* SELECTED ROUTING CONFIG CARD */}
-      <div className="ringnex-card p-3 border-2 border-gray-200 rounded-3xl shadow-xl mt-5">
+      <div className="Ringnex-card p-3 border-2 border-gray-200 rounded-3xl shadow-xl mt-5">
 
         <h4 className="text-xl font-bold mb-4">Selected Route</h4>
 
@@ -102,7 +102,7 @@ export default function RoutingMainTab() {
           </p>
         </div>
 
-        <button className="ringnex-btn-primary px-6 py-3 mt-5">
+        <button className="Ringnex-btn-primary px-6 py-3 mt-5">
           Save Routing Rule
         </button>
       </div>

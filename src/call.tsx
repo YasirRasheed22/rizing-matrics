@@ -946,7 +946,7 @@ export default function CallDesktopApp() {
                   position:"relative",zIndex:2,
                   boxShadow:`0 0 0 5px ${t.AMBER_SOFT}, 0 0 24px ${t.AMBER_BORDER}`,
                 }}>
-                  <Loader2 size={32} color={t.AMBER} className="aio-spin"/>
+                  {(name[0]||"?").toUpperCase() || <Loader2 size={32} color={t.AMBER} className="aio-spin"/>}
                 </div>
               ) : (
                 <div style={{

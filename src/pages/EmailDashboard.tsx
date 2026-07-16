@@ -230,7 +230,7 @@ export default function EmailDashboard() {
               type="checkbox"
               checked={isAllSelected}
               onChange={toggleSelectAll}
-              className="ringnex-checkbox h-5 w-5 rounded border-gray-300"
+              className="Ringnex-checkbox h-5 w-5 rounded border-gray-300"
             />
             {hasSelection && (
               <span className="font-medium whitespace-nowrap">{selectedIds.length} selected</span>
@@ -285,7 +285,7 @@ export default function EmailDashboard() {
                         e.stopPropagation();
                         toggleSelect(email.id);
                       }}
-                      className="ringnex-checkbox h-4 w-4 rounded border-gray-300"
+                      className="Ringnex-checkbox h-4 w-4 rounded border-gray-300"
                     />
                   </div>
 

@@ -19,29 +19,29 @@ export default function NumberPortingTab({ numberId }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-        <div className="ringnex-badge-box">
-          <span className="ringnex-badge-label">Status</span>
-          <span className="ringnex-badge-value">{port.status}</span>
+        <div className="Ringnex-badge-box">
+          <span className="Ringnex-badge-label">Status</span>
+          <span className="Ringnex-badge-value">{port.status}</span>
         </div>
 
-        <div className="ringnex-badge-box">
-          <span className="ringnex-badge-label">Previous Carrier</span>
-          <span className="ringnex-badge-value">{port.carrier}</span>
+        <div className="Ringnex-badge-box">
+          <span className="Ringnex-badge-label">Previous Carrier</span>
+          <span className="Ringnex-badge-value">{port.carrier}</span>
         </div>
 
-        <div className="ringnex-badge-box">
-          <span className="ringnex-badge-label">Submitted On</span>
-          <span className="ringnex-badge-value">{port.submittedOn}</span>
+        <div className="Ringnex-badge-box">
+          <span className="Ringnex-badge-label">Submitted On</span>
+          <span className="Ringnex-badge-value">{port.submittedOn}</span>
         </div>
 
-        <div className="ringnex-badge-box">
-          <span className="ringnex-badge-label">Completed On</span>
-          <span className="ringnex-badge-value">{port.completedOn}</span>
+        <div className="Ringnex-badge-box">
+          <span className="Ringnex-badge-label">Completed On</span>
+          <span className="Ringnex-badge-value">{port.completedOn}</span>
         </div>
 
       </div>
 
-      <button className="ringnex-btn-secondary px-8 py-3 flex items-center gap-3">
+      <button className="Ringnex-btn-secondary px-8 py-3 flex items-center gap-3">
         <FileText className="w-5 h-5" /> Download Porting Documents
       </button>
     </div>

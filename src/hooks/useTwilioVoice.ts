@@ -447,6 +447,12 @@ export function useTwilioDevice({ disabled = false }: { disabled?: boolean } = {
           codecPreferences: ["opus", "pcmu"] as unknown as Device.Options["codecPreferences"],
           // @ts-ignore
           enableRingingState: true,
+          // ✅ FIX #4: Agents Pakistan/Asia mein hain — default US signaling ki
+          // jagah qareeb-tareen Twilio edges (order mein try hote hain).
+          // WebRTC connect time noticeably kam hota hai.
+          edge: ["singapore", "frankfurt", "ashburn"],
+          // tokenWillExpire ko expiry se 30s pehle fire karo (default 10s)
+          tokenRefreshMs: 30000,
         });
 
         deviceRef.current = device;
@@ -454,6 +460,32 @@ export function useTwilioDevice({ disabled = false }: { disabled?: boolean } = {
         device.on("registered",   () => { if (!mounted) return; safeSetStatus("READY"); });
         device.on("unregistered", () => { if (!mounted) return; safeSetStatus("OFFLINE"); });
         device.on("error",        (error) => { console.error("Twilio Device Error:", error); });
+
+        // ✅ FIX #3: TOKEN REFRESH — pehle koi refresh nahi tha, token TTL
+        // 3600s ke baad Device chupchaap unregister ho jata tha aur har call
+        // fail hoti thi jab tak agent app restart/re-login na kare ("dialer
+        // band ho gaya" wali complaint). Ab expiry se pehle naya token le
+        // kar updateToken() hota hai — Device hamesha registered rehta hai.
+        device.on("tokenWillExpire", async () => {
+          try {
+            const { data: fresh } = await api.get(`/token/sip?identity=${user.sipIdentity}`);
+            if (fresh?.token) {
+              device.updateToken(fresh.token);
+              console.log("[Twilio] Voice token refreshed before expiry");
+            }
+          } catch (err) {
+            console.error("[Twilio] Token refresh failed — retrying in 30s:", err);
+            // Ek retry — network hiccup pe bhi session zinda rahe
+            setTimeout(async () => {
+              try {
+                const { data: retry } = await api.get(`/token/sip?identity=${user.sipIdentity}`);
+                if (retry?.token) device.updateToken(retry.token);
+              } catch (err2) {
+                console.error("[Twilio] Token refresh retry failed:", err2);
+              }
+            }, 30000);
+          }
+        });
 
         device.on("incoming", async (conn: Call) => {
           const sid  = (conn.parameters as any)?.CallSid;

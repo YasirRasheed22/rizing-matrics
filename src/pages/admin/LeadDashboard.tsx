@@ -206,7 +206,7 @@ export default function LeadDashboard() {
         <div style={{textAlign:'right'}}>
         <Link style={{
           textDecoration:'none'
-        }} to={'/leads/add-lead'} className="px-3 py-2 ringnex-btn-primary rounded">Add New </Link>
+        }} to={'/leads/add-lead'} className="px-3 py-2 Ringnex-btn-primary rounded">Add New </Link>
         </div>
         
           <motion.button
@@ -403,7 +403,7 @@ export default function LeadDashboard() {
                 <tr>
                   <td colSpan={activeTab === "leads" ? 5 : 5} className="px-6 py-24 text-center">
                     <div className="flex flex-col items-center">
-                      <div className="ringnex-spinner mb-4" />
+                      <div className="Ringnex-spinner mb-4" />
                       <p className="text-gray-500">Loading {activeTab}...</p>
                     </div>
                   </td>
@@ -494,7 +494,7 @@ export default function LeadDashboard() {
               <select
                 value={limit}
                 onChange={(e) => setLimit(Number(e.target.value))}
-                className="ringnex-input border border-gray-300 rounded-md px-1 py-1 text-sm focus:ring-orange-500 focus:border-orange-500"
+                className="Ringnex-input border border-gray-300 rounded-md px-1 py-1 text-sm focus:ring-orange-500 focus:border-orange-500"
               >
                 {[10, 20, 30, 50].map((n) => (
                   <option key={n} value={n}>

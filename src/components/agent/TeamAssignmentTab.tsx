@@ -12,12 +12,12 @@ export default function TeamAssignmentTab() {
 
       {dummyTeams.map((team) => (
         <label key={team} className="flex items-center gap-3 mb-3">
-          <input type="checkbox" className="ringnex-checkbox w-5 h-5" />
+          <input type="checkbox" className="Ringnex-checkbox w-5 h-5" />
           {team}
         </label>
       ))}
 
-      <button className="ringnex-btn-primary mt-6">Save Teams</button>
+      <button className="Ringnex-btn-primary mt-6">Save Teams</button>
     </SectionCard>
   );
 }

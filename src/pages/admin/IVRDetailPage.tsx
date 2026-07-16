@@ -64,21 +64,21 @@ export default function IVRDetailPage() {
   }
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* HEADER */}
-      <div className="ringnex-page-header">
+      <div className="Ringnex-page-header">
         <div className="flex items-center gap-3">
           <ListVideo className="text-orange-500 w-10 h-10" />
           <div>
-            <h1 className="ringnex-title">{ivrInfo.name}</h1>
+            <h1 className="Ringnex-title">{ivrInfo.name}</h1>
             <p className="text-gray-600 mt-2">{ivrInfo.description}</p>
           </div>
         </div>
       </div>
 
       {/* MAIN CARD */}
-      <div className="ringnex-card p-3 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
+      <div className="Ringnex-card p-3 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
 
         {/* TABS */}
         <div className="flex gap-4 border-b border-gray-200 pb-3 mb-6 overflow-x-auto">

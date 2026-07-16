@@ -49,7 +49,7 @@ export default function IncomingCallWindow({
       {/* Top colored section with avatar */}
       <div
         className={`h-64 flex flex-col items-center justify-center relative ${
-          isTransfer ? "bg-amber-600" : "bg-ringnex"
+          isTransfer ? "bg-amber-600" : "bg-Ringnex"
         }`}
       >
         <div className="w-32 h-32 rounded-full bg-white flex items-center justify-center shadow-lg ring-8 ring-white/40">

@@ -54,7 +54,7 @@ export default function ExtensionDetailPage() {
   }
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* Top Header */}
       <div className="flex items-center gap-4 mb-6">
@@ -66,7 +66,7 @@ export default function ExtensionDetailPage() {
         </Link>
 
         <div>
-          <h1 className="ringnex-title">Extension {extension.number}</h1>
+          <h1 className="Ringnex-title">Extension {extension.number}</h1>
           <p className="text-gray-600 text-lg mt-1">
             Manage routing, voicemail, devices & settings
           </p>
@@ -74,13 +74,13 @@ export default function ExtensionDetailPage() {
       </div>
 
       {/* TAB NAVIGATION */}
-      <div className="ringnex-tabs flex mb-8">
+      <div className="Ringnex-tabs flex mb-8">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`ringnex-tab ${
-              activeTab === tab.id ? "ringnex-tab-active" : ""
+            className={`Ringnex-tab ${
+              activeTab === tab.id ? "Ringnex-tab-active" : ""
             }`}
           >
             <tab.icon className="w-5 h-5" />
@@ -107,7 +107,7 @@ export default function ExtensionDetailPage() {
 -------------------------------------------------------------------*/
 function ProfileTab({ extension }) {
   return (
-    <div className="ringnex-card p-6 rounded-3xl shadow-xl border-2 border-gray-200">
+    <div className="Ringnex-card p-6 rounded-3xl shadow-xl border-2 border-gray-200">
 
       <h2 className="text-2xl font-bold mb-6">Extension Information</h2>
 
@@ -151,7 +151,7 @@ function ProfileTab({ extension }) {
 -------------------------------------------------------------------*/
 function RoutingTab({ extension }) {
   return (
-    <div className="ringnex-card p-6 rounded-3xl border-2 shadow-xl">
+    <div className="Ringnex-card p-6 rounded-3xl border-2 shadow-xl">
 
       <h2 className="text-2xl font-bold mb-6">Call Routing</h2>
 
@@ -176,7 +176,7 @@ function RoutingTab({ extension }) {
         </div>
       </div>
 
-      <button className="ringnex-btn-primary mt-8 px-10 py-3 text-lg">
+      <button className="Ringnex-btn-primary mt-8 px-10 py-3 text-lg">
         Save Routing
       </button>
     </div>
@@ -188,7 +188,7 @@ function RoutingTab({ extension }) {
 -------------------------------------------------------------------*/
 function AgentTab({ extension }) {
   return (
-    <div className="ringnex-card p-6 rounded-3xl shadow-xl border-2 border-gray-200">
+    <div className="Ringnex-card p-6 rounded-3xl shadow-xl border-2 border-gray-200">
 
       <h2 className="text-2xl font-bold mb-6">Assigned Agent</h2>
 
@@ -202,7 +202,7 @@ function AgentTab({ extension }) {
         </div>
       </div>
 
-      <button className="ringnex-btn-primary mt-8 px-10 py-3 text-lg">
+      <button className="Ringnex-btn-primary mt-8 px-10 py-3 text-lg">
         Reassign Agent
       </button>
     </div>
@@ -214,7 +214,7 @@ function AgentTab({ extension }) {
 -------------------------------------------------------------------*/
 function VoicemailTab({ extension }) {
   return (
-    <div className="ringnex-card p-6 rounded-3xl shadow-xl border-2">
+    <div className="Ringnex-card p-6 rounded-3xl shadow-xl border-2">
 
       <h2 className="text-2xl font-bold mb-6">Voicemail Settings</h2>
 
@@ -235,7 +235,7 @@ function VoicemailTab({ extension }) {
         </label>
       </div>
 
-      <button className="ringnex-btn-primary mt-8 px-10 py-3 text-lg">
+      <button className="Ringnex-btn-primary mt-8 px-10 py-3 text-lg">
         Save Voicemail Settings
       </button>
     </div>
@@ -247,7 +247,7 @@ function VoicemailTab({ extension }) {
 -------------------------------------------------------------------*/
 function DevicesTab({ extension }) {
   return (
-    <div className="ringnex-card p-6 rounded-3xl shadow-xl border-2">
+    <div className="Ringnex-card p-6 rounded-3xl shadow-xl border-2">
 
       <h2 className="text-2xl font-bold mb-6">SIP Devices</h2>
 
@@ -271,7 +271,7 @@ function DevicesTab({ extension }) {
               </div>
             </div>
 
-            <button className="ringnex-btn-secondary">Reset</button>
+            <button className="Ringnex-btn-secondary">Reset</button>
           </div>
         ))}
       </div>
@@ -284,7 +284,7 @@ function DevicesTab({ extension }) {
 -------------------------------------------------------------------*/
 function ActivityTab({ extension }) {
   return (
-    <div className="ringnex-card p-6 rounded-3xl shadow-xl border-2">
+    <div className="Ringnex-card p-6 rounded-3xl shadow-xl border-2">
 
       <h2 className="text-2xl font-bold mb-6">Activity Logs</h2>
 

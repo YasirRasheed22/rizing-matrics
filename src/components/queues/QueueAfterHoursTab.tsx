@@ -63,7 +63,7 @@ export default function QueueAfterHoursTab() {
         <h4 className="text-xl font-bold">After-Hours Greeting</h4>
 
         {!uploadedFile && (
-          <label className="ringnex-card p-3 rounded-3xl border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 transition flex flex-col items-center gap-4 text-center">
+          <label className="Ringnex-card p-3 rounded-3xl border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 transition flex flex-col items-center gap-4 text-center">
             <Upload className="w-14 h-14 text-blue-500" />
             <p className="font-semibold text-lg text-gray-700">
               Upload after-hours greeting (MP3/WAV)
@@ -73,7 +73,7 @@ export default function QueueAfterHoursTab() {
         )}
 
         {uploadedFile && (
-          <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6">
+          <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6">
 
             {/* FILE INFO */}
             <div className="flex justify-between items-center">
@@ -94,7 +94,7 @@ export default function QueueAfterHoursTab() {
             <div className="flex items-center gap-4">
               <button
                 onClick={handlePlayPause}
-                className="ringnex-btn-primary rounded-full w-14 h-14 flex items-center justify-center"
+                className="Ringnex-btn-primary rounded-full w-14 h-14 flex items-center justify-center"
               >
                 {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
               </button>
@@ -113,7 +113,7 @@ export default function QueueAfterHoursTab() {
       </div>
 
       {/* TTS SECTION */}
-      <div className="ringnex-card p-4 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
+      <div className="Ringnex-card p-4 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
 
         <h4 className="text-xl font-bold flex items-center gap-3">
           <Type className="text-orange-500" />
@@ -121,20 +121,20 @@ export default function QueueAfterHoursTab() {
         </h4>
 
         <textarea
-          className="ringnex-input w-full text-lg h-32"
+          className="Ringnex-input w-full text-lg h-32"
           placeholder="Type a message to speak when callers reach after hours..."
           value={ttsText}
           onChange={(e) => setTtsText(e.target.value)}
         />
 
-        <button className="ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3">
+        <button className="Ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3">
           <Check className="w-6 h-6" />
           Generate TTS Audio
         </button>
       </div>
 
       {/* ROUTING OPTIONS */}
-      <div className="ringnex-card p-4 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
+      <div className="Ringnex-card p-4 rounded-3xl border-2 shadow-xl space-y-6 mt-3">
         
         <h4 className="text-xl font-bold">After-Hours Call Routing</h4>
 
@@ -147,7 +147,7 @@ export default function QueueAfterHoursTab() {
               value="voicemail"
               checked={routing === "voicemail"}
               onChange={() => setRouting("voicemail")}
-              className="w-5 h-5 ringnex-radio"
+              className="w-5 h-5 Ringnex-radio"
             />
             <div className="flex items-center gap-2">
               <Voicemail className="text-purple-600 w-5 h-5" />
@@ -163,7 +163,7 @@ export default function QueueAfterHoursTab() {
               value="agent"
               checked={routing === "agent"}
               onChange={() => setRouting("agent")}
-              className="w-5 h-5 ringnex-radio"
+              className="w-5 h-5 Ringnex-radio"
             />
             <div className="flex items-center gap-2">
               <User className="text-blue-600 w-5 h-5" />
@@ -179,7 +179,7 @@ export default function QueueAfterHoursTab() {
               value="phone"
               checked={routing === "phone"}
               onChange={() => setRouting("phone")}
-              className="w-5 h-5 ringnex-radio"
+              className="w-5 h-5 Ringnex-radio"
             />
             <div className="flex items-center gap-2">
               <Phone className="text-green-600 w-5 h-5" />
@@ -195,7 +195,7 @@ export default function QueueAfterHoursTab() {
               value="ivr"
               checked={routing === "ivr"}
               onChange={() => setRouting("ivr")}
-              className="w-5 h-5 ringnex-radio"
+              className="w-5 h-5 Ringnex-radio"
             />
             <div className="flex items-center gap-2">
               <PhoneForwarded className="text-orange-600 w-5 h-5" />
@@ -211,7 +211,7 @@ export default function QueueAfterHoursTab() {
               value="hangup"
               checked={routing === "hangup"}
               onChange={() => setRouting("hangup")}
-              className="w-5 h-5 ringnex-radio"
+              className="w-5 h-5 Ringnex-radio"
             />
             <div className="flex items-center gap-2">
               <Trash2 className="text-red-600 w-5 h-5" />

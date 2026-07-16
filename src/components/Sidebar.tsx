@@ -224,14 +224,14 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="ringnex-sidebar fixed inset-y-0 left-0 z-50">
-        <div className="ringnex-logo">
+      <div className="Ringnex-sidebar fixed inset-y-0 left-0 z-50">
+        <div className="Ringnex-logo">
           <Link to="/dashboard">
             <img src={logo} alt="MYAIO" />
           </Link>
         </div>
 
-        <nav className="ringnex-nav">
+        <nav className="Ringnex-nav">
           {navItems
             .filter((item) => item.roles.includes(user?.role ?? ""))
             .map((item) => {
@@ -259,7 +259,7 @@ export default function Sidebar() {
                     to={item.to!}
                     end
                     className={({ isActive }) =>
-                      isActive ? "ringnex-nav-item active" : "text-black ringnex-nav-item"
+                      isActive ? "Ringnex-nav-item active" : "text-black Ringnex-nav-item"
                     }
                   >
                     {item.icon && <item.icon className="w-5 h-5" />}
@@ -284,7 +284,7 @@ export default function Sidebar() {
                 <div key={item.label}>
                   <button
                     onClick={() => toggleMenu(item.label)}
-                    className={`ringnex-nav-item w-100 text-start d-flex align-items-center justify-content-between ${
+                    className={`Ringnex-nav-item w-100 text-start d-flex align-items-center justify-content-between ${
                       isOpen || isChildActive ? "active" : "text-black"
                     }`}
                   >
@@ -300,7 +300,7 @@ export default function Sidebar() {
                   </button>
 
                   <div
-                    className="ringnex-submenu"
+                    className="Ringnex-submenu"
                     style={{
                       maxHeight: isOpen ? "500px" : "0",
                       overflow: "hidden",
@@ -313,8 +313,8 @@ export default function Sidebar() {
                         to={child.to!}
                         className={({ isActive }) =>
                           isActive
-                            ? "ringnex-nav-item ringnex-submenu-item active ps-5"
-                            : "ringnex-nav-item text-black ringnex-submenu-item ps-5"
+                            ? "Ringnex-nav-item Ringnex-submenu-item active ps-5"
+                            : "Ringnex-nav-item text-black Ringnex-submenu-item ps-5"
                         }
                       >
                         <span>{child.label}</span>
@@ -328,7 +328,7 @@ export default function Sidebar() {
           {/* Logout Button - Opens Bootstrap Modal */}
           <button
             onClick={handleShow}
-            className="ringnex-logout d-flex align-items-center gap-3 text-danger hover-bg-danger-subtle"
+            className="Ringnex-logout d-flex align-items-center gap-3 text-danger hover-bg-danger-subtle"
             style={{
               width: "100%",
               padding: "12px 16px",
@@ -341,18 +341,18 @@ export default function Sidebar() {
           </button>
         </nav>
 
-        <div className="ringnex-user">
-          <div className="ringnex-user-info">
-            <div className="ringnex-avatar">{user?.name?.[0] || "U"}</div>
+        <div className="Ringnex-user">
+          <div className="Ringnex-user-info">
+            <div className="Ringnex-avatar">{user?.name?.[0] || "U"}</div>
             <div>
               <div
-                className="ringnex-user-name"
+                className="Ringnex-user-name"
                 style={{ textTransform: "capitalize" }}
               >
                 {user?.name || "Agent"}
               </div>
               {user?.role == "ADMIN" ? null : (
-                <div className="ringnex-user-status">
+                <div className="Ringnex-user-status">
                   SIP ID: {user?.sipIdentity || "Offline"}
                 </div>
               )}

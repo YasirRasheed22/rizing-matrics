@@ -9,6 +9,7 @@ import {
   type MenuItemConstructorOptions,
 } from "electron";
 import path from "path";
+import { autoUpdater } from "electron-updater";
 
 app.setName("Ringnex (Beta)");
 app.setAppUserModelId("com.myaio.voice");
@@ -50,7 +51,12 @@ type CallAction =
   | { type: "HANGUP" }
   | { type: "TRANSFER"; payload?: unknown }
   | { type: "FETCH_CONTACT_INFO"; payload?: { number: string } }
-  | { type: "SEND_DTMF"; payload: { digits: string } };
+  // ✅ FIX: renderer "DTMF" bhejta hai (src/types/call.ts), "SEND_DTMF" nahi —
+  // whitelist mismatch ki wajah se DTMF actions silently drop ho rahe the
+  | { type: "DTMF"; payload: { digit: string } }
+  | { type: "SEND_DTMF"; payload: { digits: string } } // legacy compat
+  | { type: "SPEAKER"; payload: { deviceId: string } }
+  | { type: "REMOVE_PARTICIPANT"; payload: { participantCallSid: string } };
 
 const DEFAULT_CALL_STATE: CallSyncState = {
   status: "READY",
@@ -82,7 +88,13 @@ function isValidAction(action: unknown): action is CallAction {
     type === "HANGUP" ||
     type === "TRANSFER" ||
     type === "FETCH_CONTACT_INFO" ||
-    type === "SEND_DTMF"
+    // ✅ FIX: "DTMF" (actual renderer action) whitelist mein nahi tha —
+    // isValidAction false return karta tha aur keypad ke digits main
+    // window tak kabhi pahunchte hi nahi the
+    type === "DTMF" ||
+    type === "SEND_DTMF" || // legacy compat
+    type === "SPEAKER" ||
+    type === "REMOVE_PARTICIPANT"
   );
 }
 
@@ -370,4 +382,112 @@ ipcMain.on("window:close-call", () => {
   if (callWindow && !callWindow.isDestroyed()) {
     callWindow.close();
   }
+});
+
+/* ============================================================================
+ *  App auto-update (electron-updater)
+ *  - Renderer (UpdateButton / AppUpdateModal) window.electronAPI.* ko call karta hai
+ *  - Yahan GitHub release se check -> download -> install hota hai
+ *  - Dev mode (unpackaged) mein updater disabled — sirf packaged app mein chalta hai
+ * ========================================================================== */
+
+type AppUpdateStatus =
+  | "checking"
+  | "available"
+  | "not-available"
+  | "downloading"
+  | "downloaded"
+  | "error";
+
+// Kisi bhi khuli window (main + call) ko status bhej do — renderer subscribe karta hai
+function broadcastUpdateStatus(payload: {
+  status: AppUpdateStatus;
+  version?: string;
+  percent?: number;
+  message?: string;
+}) {
+  for (const win of BrowserWindow.getAllWindows()) {
+    if (win && !win.isDestroyed()) {
+      win.webContents.send("app-update:status", payload);
+    }
+  }
+}
+
+let autoUpdaterWired = false;
+function setupAutoUpdater() {
+  if (autoUpdaterWired) return;
+  autoUpdaterWired = true;
+
+  // available hote hi khud download shuru; app quit par install bhi ready
+  autoUpdater.autoDownload = true;
+  autoUpdater.autoInstallOnAppQuit = true;
+
+  autoUpdater.on("checking-for-update", () => {
+    broadcastUpdateStatus({ status: "checking" });
+  });
+  autoUpdater.on("update-available", (info) => {
+    broadcastUpdateStatus({ status: "available", version: info?.version });
+  });
+  autoUpdater.on("update-not-available", (info) => {
+    broadcastUpdateStatus({ status: "not-available", version: info?.version });
+  });
+  autoUpdater.on("download-progress", (p) => {
+    broadcastUpdateStatus({
+      status: "downloading",
+      percent: Math.round(p?.percent ?? 0),
+    });
+  });
+  autoUpdater.on("update-downloaded", (info) => {
+    broadcastUpdateStatus({ status: "downloaded", version: info?.version });
+  });
+  autoUpdater.on("error", (err) => {
+    broadcastUpdateStatus({
+      status: "error",
+      message: (err && (err as Error).message) || String(err),
+    });
+  });
+}
+
+// Renderer: "Search for latest" button
+ipcMain.handle("app-update:check", async () => {
+  if (!app.isPackaged) {
+    broadcastUpdateStatus({
+      status: "not-available",
+      message: "Dev mode — updates sirf installed app mein chalte hain.",
+    });
+    return { ok: false, message: "Updates only work in the installed app." };
+  }
+  try {
+    setupAutoUpdater();
+    await autoUpdater.checkForUpdates();
+    return { ok: true };
+  } catch (err) {
+    const message = (err && (err as Error).message) || String(err);
+    broadcastUpdateStatus({ status: "error", message });
+    return { ok: false, message };
+  }
+});
+
+// Renderer: "Restart & Install"
+ipcMain.handle("app-update:install", async () => {
+  try {
+    // false, true = app ko silently restart karke naya version install karo
+    autoUpdater.quitAndInstall(false, true);
+    return { ok: true };
+  } catch (err) {
+    const message = (err && (err as Error).message) || String(err);
+    broadcastUpdateStatus({ status: "error", message });
+    return { ok: false, message };
+  }
+});
+
+// App launch par ek dafa khud check kar lo (background, silent fail)
+app.whenReady().then(() => {
+  if (!app.isPackaged) return;
+  setupAutoUpdater();
+  setTimeout(() => {
+    autoUpdater.checkForUpdates().catch(() => {
+      /* offline / no release — chup-chaap ignore, app normal chalti rahe */
+    });
+  }, 4000);
 });

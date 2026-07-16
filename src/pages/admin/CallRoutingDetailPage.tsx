@@ -62,12 +62,12 @@ export default function CallRoutingDetailPage() {
   }
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* HEADER */}
-      <div className="ringnex-page-header">
+      <div className="Ringnex-page-header">
         <div>
-          <h1 className="ringnex-title flex items-center gap-3">
+          <h1 className="Ringnex-title flex items-center gap-3">
             <Phone className="text-blue-600" />
             {numberInfo.number}
           </h1>
@@ -78,7 +78,7 @@ export default function CallRoutingDetailPage() {
       </div>
 
       {/* MAIN CARD */}
-      <div className="ringnex-card bg-white rounded-3xl shadow-xl border-2 border-gray-200 p-3">
+      <div className="Ringnex-card bg-white rounded-3xl shadow-xl border-2 border-gray-200 p-3">
 
         {/* TABS */}
         <div className="flex gap-4 border-b border-gray-200 pb-3 mb-6 overflow-x-auto">

@@ -50,7 +50,7 @@ export default function RoutingRulesTab() {
           Routing Rules
         </h3>
 
-        <button className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
+        <button className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
           <Plus size={20} />
           Add Rule
         </button>
@@ -61,7 +61,7 @@ export default function RoutingRulesTab() {
         {rules.map(rule => (
           <div
             key={rule.id}
-            className="ringnex-card p-3 rounded-3xl shadow-xl border-2 border-gray-200 hover:shadow-2xl transition mt-3"
+            className="Ringnex-card p-3 rounded-3xl shadow-xl border-2 border-gray-200 hover:shadow-2xl transition mt-3"
           >
             <div className="flex justify-between items-start">
               

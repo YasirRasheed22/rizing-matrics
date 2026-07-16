@@ -29,7 +29,7 @@ export default function TeamPermissionsTab({ teamId }) {
               type="checkbox"
               checked={value}
               onChange={() => toggle(key)}
-              className="ringnex-checkbox"
+              className="Ringnex-checkbox"
             />
             {key.replace(/([A-Z])/g, " $1").trim()}
           </label>

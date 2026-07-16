@@ -52,7 +52,7 @@ export default function IVRAnalyticsTab() {
       </h3>
 
       {/* 1 — CALL VOLUME LINE CHART */}
-      <div className="ringnex-card p-6 border-2 rounded-3xl shadow-xl">
+      <div className="Ringnex-card p-6 border-2 rounded-3xl shadow-xl">
         <h4 className="text-xl font-semibold mb-4">Call Volume by Hour</h4>
 
         <div className="h-72">
@@ -69,7 +69,7 @@ export default function IVRAnalyticsTab() {
       </div>
 
       {/* 2 — DTMF KEY USAGE */}
-      <div className="ringnex-card p-6 border-2 rounded-3xl shadow-xl">
+      <div className="Ringnex-card p-6 border-2 rounded-3xl shadow-xl">
         <h4 className="text-xl font-semibold mb-4">DTMF Key Usage</h4>
 
         <div className="h-72">
@@ -86,7 +86,7 @@ export default function IVRAnalyticsTab() {
       </div>
 
       {/* 3 — PERCENTAGE OF OUTCOMES */}
-      <div className="ringnex-card p-6 border-2 rounded-3xl shadow-xl">
+      <div className="Ringnex-card p-6 border-2 rounded-3xl shadow-xl">
         <h4 className="text-xl font-semibold mb-4">Call Outcomes</h4>
 
         <div className="flex justify-center h-80">

@@ -40,7 +40,7 @@ export default function RoutingSchedulesTab() {
           Routing Schedules
         </h3>
 
-        <button className="ringnex-btn-primary flex items-center gap-3 px-6 py-3 text-lg">
+        <button className="Ringnex-btn-primary flex items-center gap-3 px-6 py-3 text-lg">
           <Plus size={20} /> Add Schedule
         </button>
       </div>
@@ -50,7 +50,7 @@ export default function RoutingSchedulesTab() {
         {schedules.map(schedule => (
           <div
             key={schedule.id}
-            className="ringnex-card p-3 rounded-3xl border-2 border-gray-200 shadow-xl hover:shadow-2xl transition"
+            className="Ringnex-card p-3 rounded-3xl border-2 border-gray-200 shadow-xl hover:shadow-2xl transition"
           >
             <div className="flex justify-between items-start">
               <div>

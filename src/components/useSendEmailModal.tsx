@@ -187,7 +187,7 @@ export function useSendEmailModal() {
                 onChange={(e) => setToInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addToRecipient())}
                 placeholder="Add recipient..."
-                className="ringnex-input flex-1 px-4 py-2 rounded border border-gray-300 focus:border-blue-500 focus:outline-none"
+                className="Ringnex-input flex-1 px-4 py-2 rounded border border-gray-300 focus:border-blue-500 focus:outline-none"
               />
               <button
                 onClick={addToRecipient}
@@ -206,7 +206,7 @@ export function useSendEmailModal() {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Subject"
-              className="ringnex-input w-full px-4 py-2 rounded border border-gray-300 focus:border-blue-500 focus:outline-none"
+              className="Ringnex-input w-full px-4 py-2 rounded border border-gray-300 focus:border-blue-500 focus:outline-none"
             />
           </div>
 

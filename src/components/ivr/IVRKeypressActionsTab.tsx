@@ -49,7 +49,7 @@ export default function IVRKeypressActionsTab() {
         <h3 className="text-2xl font-bold">Keypress Actions</h3>
 
         <button
-          className="ringnex-btn-primary flex items-center gap-3 px-6 py-3 text-lg"
+          className="Ringnex-btn-primary flex items-center gap-3 px-6 py-3 text-lg"
           onClick={() => setShowModal(true)}
         >
           <Plus size={22} />
@@ -58,7 +58,7 @@ export default function IVRKeypressActionsTab() {
       </div>
 
       {/* Table */}
-      <div className="ringnex-card p-6 rounded-3xl border-2 border-gray-200 bg-white shadow-xl overflow-x-auto">
+      <div className="Ringnex-card p-6 rounded-3xl border-2 border-gray-200 bg-white shadow-xl overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50 border-b-2 border-gray-200">
             <tr>
@@ -102,18 +102,18 @@ export default function IVRKeypressActionsTab() {
 
       {/* Modal */}
       {showModal && (
-        <div className="ringnex-modal-backdrop">
-          <div className="ringnex-modal max-w-xl" onClick={(e) => e.stopPropagation()}>
-            <div className="ringnex-modal-header">
-              <h2 className="ringnex-modal-title">
+        <div className="Ringnex-modal-backdrop">
+          <div className="Ringnex-modal max-w-xl" onClick={(e) => e.stopPropagation()}>
+            <div className="Ringnex-modal-header">
+              <h2 className="Ringnex-modal-title">
                 {editIndex !== null ? "Edit Keypress" : "Add New Keypress"}
               </h2>
-              <button className="ringnex-close-btn" onClick={() => setShowModal(false)}>
+              <button className="Ringnex-close-btn" onClick={() => setShowModal(false)}>
                 ✕
               </button>
             </div>
 
-            <div className="ringnex-modal-body space-y-8">
+            <div className="Ringnex-modal-body space-y-8">
 
               {/* Key */}
               <div className="input-wrapper">
@@ -155,11 +155,11 @@ export default function IVRKeypressActionsTab() {
 
             </div>
 
-            <div className="ringnex-modal-footer">
-              <button className="ringnex-btn-secondary" onClick={() => setShowModal(false)}>
+            <div className="Ringnex-modal-footer">
+              <button className="Ringnex-btn-secondary" onClick={() => setShowModal(false)}>
                 Cancel
               </button>
-              <button className="ringnex-btn-primary" onClick={handleSave}>
+              <button className="Ringnex-btn-primary" onClick={handleSave}>
                 Save
               </button>
             </div>

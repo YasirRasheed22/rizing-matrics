@@ -59,7 +59,7 @@ export default function QueueAnnouncementTab() {
 
       {/* UPLOAD AREA */}
       {!uploadedFile && (
-        <label className="ringnex-card p-3 rounded-3xl border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 transition flex flex-col items-center gap-4 text-center">
+        <label className="Ringnex-card p-3 rounded-3xl border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 transition flex flex-col items-center gap-4 text-center">
           <Upload className="w-14 h-14 text-orange-500" />
           <p className="font-semibold text-lg text-gray-700">
             Upload announcement audio (MP3/WAV)
@@ -70,7 +70,7 @@ export default function QueueAnnouncementTab() {
 
       {/* ANNOUNCEMENT FILE */}
       {uploadedFile && (
-        <div className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6">
+        <div className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-6">
           
           {/* FILE HEADER */}
           <div className="flex justify-between items-center">
@@ -91,7 +91,7 @@ export default function QueueAnnouncementTab() {
           <div className="flex items-center gap-4">
             <button
               onClick={handlePlayPause}
-              className="ringnex-btn-primary w-14 h-14 rounded-full flex items-center justify-center"
+              className="Ringnex-btn-primary w-14 h-14 rounded-full flex items-center justify-center"
             >
               {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
             </button>
@@ -109,7 +109,7 @@ export default function QueueAnnouncementTab() {
       )}
 
       {/* TTS SECTION */}
-      <div className="ringnex-card p-3 mt-3 rounded-3xl border-2 shadow-xl space-y-6">
+      <div className="Ringnex-card p-3 mt-3 rounded-3xl border-2 shadow-xl space-y-6">
 
         <h4 className="text-xl font-bold flex items-center gap-3">
           <Type className="text-blue-600" />
@@ -117,20 +117,20 @@ export default function QueueAnnouncementTab() {
         </h4>
 
         <textarea
-          className="ringnex-input w-full h-32 text-lg"
+          className="Ringnex-input w-full h-32 text-lg"
           placeholder="Type a message to generate a TTS announcement..."
           value={ttsText}
           onChange={(e) => setTtsText(e.target.value)}
         />
 
-        <button className="ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 mt-3">
+        <button className="Ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 mt-3">
           <Check className="w-6 h-6" />
           Generate Announcement
         </button>
       </div>
 
       {/* REPEAT ANNOUNCEMENT SETTINGS */}
-      <div className="ringnex-card p-3 mt-3 rounded-3xl border-2 shadow-xl space-y-6">
+      <div className="Ringnex-card p-3 mt-3 rounded-3xl border-2 shadow-xl space-y-6">
         
         <h4 className="text-xl font-bold flex items-center gap-3">
           <RotateCcw className="text-purple-500" />
@@ -142,7 +142,7 @@ export default function QueueAnnouncementTab() {
             type="checkbox"
             checked={repeatEnabled}
             onChange={(e) => setRepeatEnabled(e.target.checked)}
-            className="w-6 h-6 ringnex-checkbox"
+            className="w-6 h-6 Ringnex-checkbox"
           />
           <span className="text-gray-800 font-medium">Enable repeating announcements</span>
         </label>
@@ -157,7 +157,7 @@ export default function QueueAnnouncementTab() {
               value={repeatInterval}
               onChange={(e) => setRepeatInterval(e.target.value)}
               min={10}
-              className="ringnex-input w-32"
+              className="Ringnex-input w-32"
             />
 
             <span className="text-gray-700 font-medium">seconds</span>

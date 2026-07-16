@@ -59,12 +59,12 @@ export default function Extensions() {
   }
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* HEADER */}
-      <div className="ringnex-page-header">
+      <div className="Ringnex-page-header">
         <div>
-          <h1 className="ringnex-title">Extensions</h1>
+          <h1 className="Ringnex-title">Extensions</h1>
           <p className="text-gray-600 text-lg mt-2">
             Manage all phone extensions assigned to agents
           </p>
@@ -72,7 +72,7 @@ export default function Extensions() {
 
         <button
           onClick={() => setShowDrawer(true)}
-          className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
+          className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
         >
           <Plus size={22} />
           Add Extension
@@ -80,7 +80,7 @@ export default function Extensions() {
       </div>
 
       {/* CARD WRAPPER */}
-      <div className="ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
+      <div className="Ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
 
         {/* SEARCH BAR */}
         <div className="mb-6 flex items-center justify-between">
@@ -90,7 +90,7 @@ export default function Extensions() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
+              className="Ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
               placeholder="Search by extension or agent..."
             />
           </div>
@@ -175,7 +175,7 @@ export default function Extensions() {
              onClick={resetModal}>
 
           <div
-            className="w-[450px] h-full bg-white shadow-2xl border-l-2 border-gray-200 p-5 overflow-y-auto ringnex-modal"
+            className="w-[450px] h-full bg-white shadow-2xl border-l-2 border-gray-200 p-5 overflow-y-auto Ringnex-modal"
             onClick={(e) => e.stopPropagation()}
           >
 
@@ -235,7 +235,7 @@ export default function Extensions() {
                 <button
                   disabled={!form.type}
                   onClick={() => setStep(2)}
-                  className="ringnex-btn-primary w-full py-3 mt-5"
+                  className="Ringnex-btn-primary w-full py-3 mt-5"
                 >
                   Next <ChevronRight />
                 </button>
@@ -263,7 +263,7 @@ export default function Extensions() {
                 <div className="flex justify-between mt-5">
                   <button
                     onClick={() => setStep(1)}
-                    className="ringnex-btn-secondary flex items-center gap-2"
+                    className="Ringnex-btn-secondary flex items-center gap-2"
                   >
                     <ChevronLeft /> Back
                   </button>
@@ -271,7 +271,7 @@ export default function Extensions() {
                   <button
                     disabled={!form.number}
                     onClick={() => setStep(3)}
-                    className="ringnex-btn-primary flex items-center gap-2"
+                    className="Ringnex-btn-primary flex items-center gap-2"
                   >
                     Next <ChevronRight />
                   </button>
@@ -304,7 +304,7 @@ export default function Extensions() {
                 <div className="flex justify-between mt-5">
                   <button
                     onClick={() => setStep(2)}
-                    className="ringnex-btn-secondary flex items-center gap-2"
+                    className="Ringnex-btn-secondary flex items-center gap-2"
                   >
                     <ChevronLeft /> Back
                   </button>
@@ -312,7 +312,7 @@ export default function Extensions() {
                   <button
                     disabled={!form.assignedTo}
                     onClick={() => setStep(4)}
-                    className="ringnex-btn-primary flex items-center gap-2"
+                    className="Ringnex-btn-primary flex items-center gap-2"
                   >
                     Next <ChevronRight />
                   </button>
@@ -347,14 +347,14 @@ export default function Extensions() {
                 <div className="flex justify-between mt-5">
                   <button
                     onClick={() => setStep(3)}
-                    className="ringnex-btn-secondary flex items-center gap-2"
+                    className="Ringnex-btn-secondary flex items-center gap-2"
                   >
                     <ChevronLeft /> Back
                   </button>
 
                   <button
                     onClick={handleSubmit}
-                    className="ringnex-btn-primary flex items-center gap-2"
+                    className="Ringnex-btn-primary flex items-center gap-2"
                   >
                     <Check /> Create Extension
                   </button>

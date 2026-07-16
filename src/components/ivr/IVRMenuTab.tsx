@@ -55,7 +55,7 @@ export default function IVRMenuTab() {
         {menu.map((item, i) => (
           <div
             key={i}
-            className="ringnex-card p-3 mt-2 border-2 rounded-3xl shadow-xl space-y-4"
+            className="Ringnex-card p-3 mt-2 border-2 rounded-3xl shadow-xl space-y-4"
           >
             {/* HEADER */}
             <div className="flex justify-between items-center">
@@ -79,7 +79,7 @@ export default function IVRMenuTab() {
                 placeholder="1"
                 value={item.key}
                 onChange={(e) => updateItem(i, "key", e.target.value)}
-                className="ringnex-input w-60 mt-2"
+                className="Ringnex-input w-60 mt-2"
               />
             </div>
 
@@ -90,7 +90,7 @@ export default function IVRMenuTab() {
               <select
                 value={item.action}
                 onChange={(e) => updateItem(i, "action", e.target.value)}
-                className="ringnex-input mt-2 w-60"
+                className="Ringnex-input mt-2 w-60"
               >
                 {actions.map((a) => (
                   <option key={a.value} value={a.value}>
@@ -108,7 +108,7 @@ export default function IVRMenuTab() {
                 placeholder="Enter target (queue, number, sub-IVR, etc.)"
                 value={item.target}
                 onChange={(e) => updateItem(i, "target", e.target.value)}
-                className="ringnex-input mt-2 w-60"
+                className="Ringnex-input mt-2 w-60"
               />
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function IVRMenuTab() {
       {/* ADD NEW KEY */}
       <button
         onClick={addKey}
-        className="ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 rounded-2xl shadow-xl hover:scale-105 mt-3"
+        className="Ringnex-btn-primary px-6 py-3 text-lg flex items-center gap-3 rounded-2xl shadow-xl hover:scale-105 mt-3"
       >
         <Plus className="w-6 h-6" />
         Add Menu Key

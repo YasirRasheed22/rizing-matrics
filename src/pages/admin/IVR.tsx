@@ -52,12 +52,12 @@ export default function IVR() {
   )
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* HEADER */}
-      <div className="ringnex-page-header">
+      <div className="Ringnex-page-header">
         <div>
-          <h1 className="ringnex-title">IVR Menus</h1>
+          <h1 className="Ringnex-title">IVR Menus</h1>
           <p className="text-gray-600 text-lg mt-2">
             Manage call menus, greetings, and automated phone navigation
           </p>
@@ -65,7 +65,7 @@ export default function IVR() {
 
         <button
           onClick={() => navigate("/admin/ivr/create")}
-          className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
+          className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
         >
           <Plus size={22} />
           Add New IVR
@@ -73,7 +73,7 @@ export default function IVR() {
       </div>
 
       {/* MAIN CARD */}
-      <div className="ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
+      <div className="Ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
 
         {/* SEARCH BAR */}
         <div className="mb-6 flex items-center justify-between">
@@ -83,7 +83,7 @@ export default function IVR() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
+              className="Ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
               placeholder="Search IVRs by name or number..."
             />
           </div>

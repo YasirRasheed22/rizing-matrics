@@ -52,7 +52,7 @@ export default function RoutingVoicemailTab() {
           Voicemail Boxes
         </h3>
 
-        <button className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
+        <button className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
           <Plus size={20} />
           Add Voicemail Box
         </button>
@@ -63,7 +63,7 @@ export default function RoutingVoicemailTab() {
         {voicemails.map(vm => (
           <div
             key={vm.id}
-            className="ringnex-card p-3 rounded-3xl border-2 border-gray-200 shadow-xl hover:shadow-2xl transition mt-3"
+            className="Ringnex-card p-3 rounded-3xl border-2 border-gray-200 shadow-xl hover:shadow-2xl transition mt-3"
           >
             {/* HEADER */}
             <div className="flex justify-between items-start">

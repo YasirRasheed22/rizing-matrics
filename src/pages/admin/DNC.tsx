@@ -172,7 +172,7 @@ export default function DNC() {
 
   return (
     <div
-      className="ringnex-page"
+      className="Ringnex-page"
       style={{
         color: textPrimary,
       }}
@@ -180,7 +180,7 @@ export default function DNC() {
       {/* Header */}
       <div className="mb-6">
         <h4
-          className="ringnex-title"
+          className="Ringnex-title"
           style={{
             color: textPrimary,
             marginBottom: 8,

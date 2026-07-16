@@ -93,21 +93,21 @@ export default function QueueDetailPage() {
   }
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* HEADER */}
-      <div className="ringnex-page-header">
+      <div className="Ringnex-page-header">
         <div className="flex items-center gap-4">
           <Headphones className="w-12 h-12 text-orange-500" />
           <div>
-            <h1 className="ringnex-title">{queueInfo.name}</h1>
+            <h1 className="Ringnex-title">{queueInfo.name}</h1>
             <p className="text-gray-600 mt-2">{queueInfo.description}</p>
           </div>
         </div>
       </div>
 
       {/* MAIN CARD */}
-      <div className="ringnex-card p-6 bg-white rounded-3xl border-2 shadow-xl">
+      <div className="Ringnex-card p-6 bg-white rounded-3xl border-2 shadow-xl">
 
         {/* TAB SWITCHER */}
         <div className="flex gap-3 border-b border-gray-200 pb-3 mb-6 overflow-x-auto">

@@ -649,37 +649,49 @@ export default function TeamChat() {
   }, [deleteTarget, selectedChat, getMsgPath]);
 
   /* ── Real-time lists ── */
-  useEffect(() => {
-    if (!agents.length) return;
-    const r = ref(db, "teamChats/");
-    const fn = (snap: any) => {
-      seenMapRef.current = loadSeenMap(myId);
-      const list: any[] = [];
-      snap.forEach((child: any) => {
-        const chatId = child.key || "";
-        if (!chatId.includes(String(myId))) return;
-        const [a, b] = chatId.split("_").map(Number);
-        const partnerId = a == myId ? b : a;
-        const partner = agentsMapRef.current[partnerId];
-        if (!partner) return;
-        const msgSnap = child.child("messages").val();
-        if (!msgSnap) return;
-        const msgs = Object.values(msgSnap) as any[];
-        const sorted = msgs.sort((x: any, y: any) => (y.timestamp || 0) - (x.timestamp || 0));
-        const last = sorted[0];
-        const chatKey = `individual_${partnerId}`;
-        
-        list.push({ type: "individual", id: partnerId, name: partner.name, avatar: partner.name.substring(0, 2).toUpperCase(), lastMessage: last?.deleted ? "🚫 Message deleted" : (last?.text || (last?.attachments?.length ? "📎 Attachment" : "")), time: last?.time || new Date().toISOString(),
+useEffect(() => {
+  if (!agents.length) return;
+  const r = ref(db, "teamChats/");
+  const fn = (snap: any) => {
+    seenMapRef.current = loadSeenMap(myId);
+    const list: any[] = [];
+    snap.forEach((child: any) => {
+      const chatId = child.key || "";
+      const [a, b] = chatId.split("_").map(Number);
+      // exact match — substring collision (26 vs 126) se bacho
+      if (a !== Number(myId) && b !== Number(myId)) return;
+      const partnerId = a === Number(myId) ? b : a;
+      const partner = agentsMapRef.current[partnerId];
+      if (!partner) return;
+      const msgSnap = child.child("messages").val();
+      if (!msgSnap) return;
+      const msgs = Object.values(msgSnap) as any[];
+      const sorted = msgs.sort((x: any, y: any) => (y.timestamp || 0) - (x.timestamp || 0));
+      const last = sorted[0];
+      const chatKey = `individual_${partnerId}`;
+
+      list.push({
+        type: "individual",
+        id: partnerId,
+        name: partner.name,
+        avatar: partner.name.substring(0, 2).toUpperCase(),
+        lastMessage: last?.deleted
+          ? "🚫 Message deleted"
+          : (last?.text || (last?.attachments?.length ? "📎 Attachment" : "")),
+        time: last?.time || new Date().toISOString(),
         unread: countUnread(
           Object.fromEntries(msgs.map((m: any, i: number) => [i, m])),
           myId,
           seenMapRef.current[chatKey] || 0
-        ), chatKey });
+        ),
+        chatKey,
       });
-      setChatList(list);
-    };
-    onValue(r, fn); return () => off(r, "value", fn);
-  }, [agents, myId]);
+    });
+    setChatList(list);
+  };
+  onValue(r, fn);
+  return () => off(r, "value", fn);
+}, [agents, myId]);
 
   useEffect(() => {
     if (!teams.length) return;

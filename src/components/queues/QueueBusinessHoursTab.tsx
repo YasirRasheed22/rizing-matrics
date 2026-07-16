@@ -67,7 +67,7 @@ export default function QueueBusinessHoursTab() {
       {/* COPY BUTTON */}
       <button
         onClick={copyMondayToAll}
-        className="ringnex-btn-secondary px-6 py-3 flex items-center gap-3 rounded-2xl mt-3 mb-3"
+        className="Ringnex-btn-secondary px-6 py-3 flex items-center gap-3 rounded-2xl mt-3 mb-3"
       >
         <Copy className="w-5 h-5" />
         Copy Monday to All Days
@@ -78,7 +78,7 @@ export default function QueueBusinessHoursTab() {
         {days.map((day) => (
           <div
             key={day}
-            className="ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-4 mt-2   "
+            className="Ringnex-card p-3 rounded-3xl border-2 shadow-xl space-y-4 mt-2   "
           >
             {/* HEADER */}
             <div className="flex justify-between items-center">
@@ -89,7 +89,7 @@ export default function QueueBusinessHoursTab() {
                   type="checkbox"
                   checked={schedule[day].length > 0}
                   onChange={() => toggleDayOpen(day)}
-                  className="w-6 h-6 ringnex-checkbox"
+                  className="w-6 h-6 Ringnex-checkbox"
                 />
                 <span className="text-gray-800 font-medium">Open</span>
               </label>
@@ -109,7 +109,7 @@ export default function QueueBusinessHoursTab() {
                   onChange={(e) =>
                     changeTime(day, index, "start", e.target.value)
                   }
-                  className="ringnex-input w-40"
+                  className="Ringnex-input w-40"
                 />
 
                 <span className="font-bold">to</span>
@@ -120,7 +120,7 @@ export default function QueueBusinessHoursTab() {
                   onChange={(e) =>
                     changeTime(day, index, "end", e.target.value)
                   }
-                  className="ringnex-input w-40"
+                  className="Ringnex-input w-40"
                 />
 
                 {index > 0 && (
@@ -138,7 +138,7 @@ export default function QueueBusinessHoursTab() {
             {schedule[day].length > 0 && (
               <button
                 onClick={() => addTimeRange(day)}
-                className="ringnex-btn-secondary px-4 py-2 text-sm flex items-center gap-2 mt-3"
+                className="Ringnex-btn-secondary px-4 py-2 text-sm flex items-center gap-2 mt-3"
               >
                 <Plus className="w-4 h-4" />
                 Add Time Range

@@ -68,7 +68,7 @@ export default function NumberRoutingTab({ numberId }) {
 
       </div>
 
-      <button className="ringnex-btn-primary px-8 py-3">Save Changes</button>
+      <button className="Ringnex-btn-primary px-8 py-3">Save Changes</button>
     </div>
   )
 }

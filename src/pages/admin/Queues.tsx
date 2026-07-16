@@ -62,12 +62,12 @@ export default function Queues() {
   }
 
   return (
-    <div className="ringnex-page">
+    <div className="Ringnex-page">
 
       {/* HEADER */}
-      <div className="ringnex-page-header">
+      <div className="Ringnex-page-header">
         <div>
-          <h1 className="ringnex-title">Call Queues</h1>
+          <h1 className="Ringnex-title">Call Queues</h1>
           <p className="text-gray-600 text-lg mt-2">
             Manage your call distribution groups
           </p>
@@ -75,7 +75,7 @@ export default function Queues() {
 
         <button
           onClick={() => setShowModal(true)}
-          className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
+          className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg"
         >
           <Plus size={22} />
           Add Queue
@@ -83,7 +83,7 @@ export default function Queues() {
       </div>
 
       {/* MAIN CARD */}
-      <div className="ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
+      <div className="Ringnex-card p-6 bg-white rounded-3xl shadow-xl border-2 border-gray-200">
 
         {/* SEARCH */}
         <div className="mb-6 flex items-center justify-between">
@@ -93,7 +93,7 @@ export default function Queues() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
+              className="Ringnex-input pl-14 pr-4 py-3 rounded-2xl shadow-inner"
               placeholder="Search queues by name or extension..."
             />
           </div>
@@ -161,19 +161,19 @@ export default function Queues() {
       {/* ADD QUEUE MODAL */}
       {showModal && (
         <div
-          className="ringnex-modal-backdrop"
+          className="Ringnex-modal-backdrop"
           onClick={() => setShowModal(false)}
         >
           <div
-            className="ringnex-modal max-w-xl"
+            className="Ringnex-modal max-w-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="ringnex-modal-header">
-              <h2 className="ringnex-modal-title">Create New Queue</h2>
+            <div className="Ringnex-modal-header">
+              <h2 className="Ringnex-modal-title">Create New Queue</h2>
 
               <button
                 onClick={() => setShowModal(false)}
-                className="ringnex-close-btn"
+                className="Ringnex-close-btn"
               >
                 ✕
               </button>
@@ -188,7 +188,7 @@ export default function Queues() {
                 </label>
                 <input
                   type="text"
-                  className="ringnex-input mt-2"
+                  className="Ringnex-input mt-2"
                   placeholder="Support Queue"
                   value={form.name}
                   onChange={(e) =>
@@ -205,7 +205,7 @@ export default function Queues() {
                 </label>
                 <input
                   type="text"
-                  className="ringnex-input mt-2"
+                  className="Ringnex-input mt-2"
                   placeholder="3001"
                   value={form.extension}
                   onChange={(e) =>
@@ -218,7 +218,7 @@ export default function Queues() {
               {/* SAVE BUTTON */}
               <button
                 type="submit"
-                className="ringnex-btn-primary w-full py-3 text-lg rounded-2xl"
+                className="Ringnex-btn-primary w-full py-3 text-lg rounded-2xl"
               >
                 Create Queue
               </button>

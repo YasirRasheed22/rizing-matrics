@@ -40,7 +40,7 @@ function WalletChip({ isDark }: { isDark: boolean }) {
   const [isFrozen, setIsFrozen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const navigate = useNavigate();
-  
+
   React.useEffect(() => {
     let cancelled = false;
     const fetchWallet = async () => {

@@ -2,7 +2,7 @@
 
 export default function SectionCard({ children }) {
     return (
-      <div className="ringnex-card p-3 rounded-3xl shadow-xl bg-white mb-8 mt-3">
+      <div className="Ringnex-card p-3 rounded-3xl shadow-xl bg-white mb-8 mt-3">
         {children}
       </div>
     );

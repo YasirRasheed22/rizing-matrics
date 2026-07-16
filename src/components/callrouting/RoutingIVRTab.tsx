@@ -17,7 +17,7 @@ export default function RoutingIVRTab() {
     {
       id: 1,
       name: "Main IVR",
-      prompt: "Welcome to RingNex. Press 1 for Sales, 2 for Support.",
+      prompt: "Welcome to Ringnex. Press 1 for Sales, 2 for Support.",
       options: [
         { key: "1", action: "Forward to Sales Queue" },
         { key: "2", action: "Forward to Support Queue" },
@@ -47,7 +47,7 @@ export default function RoutingIVRTab() {
           IVR Menus
         </h3>
 
-        <button className="ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
+        <button className="Ringnex-btn-primary px-6 py-3 flex items-center gap-3 text-lg">
           <Plus size={20} />
           Add IVR Menu
         </button>
@@ -58,7 +58,7 @@ export default function RoutingIVRTab() {
         {ivrList.map(ivr => (
           <div
             key={ivr.id}
-            className="ringnex-card p-3 rounded-3xl shadow-xl border-2 border-gray-200 hover:shadow-2xl transition mt-2" 
+            className="Ringnex-card p-3 rounded-3xl shadow-xl border-2 border-gray-200 hover:shadow-2xl transition mt-2" 
           >
             {/* HEADER */}
             <div className="flex justify-between items-start">
@@ -116,7 +116,7 @@ export default function RoutingIVRTab() {
 
             {/* AUDIO UPLOAD */}
             <div className="mt-4">
-              <button className="ringnex-btn-secondary flex items-center gap-3 px-5 py-2">
+              <button className="Ringnex-btn-secondary flex items-center gap-3 px-5 py-2">
                 <Upload size={18} />
                 Upload New Prompt
               </button>

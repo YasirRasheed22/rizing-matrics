@@ -399,7 +399,7 @@ export default function LeadSaleModal({
                       <div className="relative">
                         <User className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                         <input
-                          className="ringnex-input w-full pl-14 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition"
+                          className="Ringnex-input w-full pl-14 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition"
                           type="text"
                           value={clientName}
                           onChange={(e) => setClientName(e.target.value)}
@@ -413,7 +413,7 @@ export default function LeadSaleModal({
                       <div className="relative">
                         <Phone className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                         <input
-                          className="ringnex-input w-full pl-14 pr-4 py-4 border-2 border-gray-200 rounded-2xl bg-gray-100 cursor-not-allowed"
+                          className="Ringnex-input w-full pl-14 pr-4 py-4 border-2 border-gray-200 rounded-2xl bg-gray-100 cursor-not-allowed"
                           type="text"
                           value={customerNumber}
                           disabled
@@ -427,7 +427,7 @@ export default function LeadSaleModal({
                       <div className="relative md:col-span-2">
                         <MapPin className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                         <input
-                          className="ringnex-input w-full pl-14 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition"
+                          className="Ringnex-input w-full pl-14 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition"
                           type="text"
                           value={clientAddress}
                           onChange={(e) => setClientAddress(e.target.value)}
@@ -479,7 +479,7 @@ export default function LeadSaleModal({
                                 type="checkbox"
                                 checked={selectedServices.includes(service)}
                                 onChange={() => toggleService(service)}
-                                className="ringnex-checkbox w-5 h-5 accent-purple-600"
+                                className="Ringnex-checkbox w-5 h-5 accent-purple-600"
                               />
                               <span className="text-sm sm:text-base text-black" style={{
                                 fontSize:14
@@ -496,7 +496,7 @@ export default function LeadSaleModal({
                             type="checkbox"
                             checked={showBusinessDetails}
                             onChange={(e) => setShowBusinessDetails(e.target.checked)}
-                            className="ringnex-checkbox w-5 h-5 accent-purple-600"
+                            className="Ringnex-checkbox w-5 h-5 accent-purple-600"
                           />
                           <span className="text-black">
                             
@@ -509,7 +509,7 @@ export default function LeadSaleModal({
                             <div className="relative">
                               <Building className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                               <input
-                                className="w-full pl-14 pr-4 py-3 ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+                                className="w-full pl-14 pr-4 py-3 Ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
                                 type="text"
                                 value={businessName}
                                 onChange={(e) => setBusinessName(e.target.value)}
@@ -534,7 +534,7 @@ export default function LeadSaleModal({
                             <div className="relative md:col-span-2">
                               <MapPin className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                               <input
-                                className="w-full pl-14 pr-4 py-3 ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+                                className="w-full pl-14 pr-4 py-3 Ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
                                 type="text"
                                 value={businessAddress}
                                 onChange={(e) => setBusinessAddress(e.target.value)}
@@ -549,7 +549,7 @@ export default function LeadSaleModal({
                               <Briefcase className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                               <textarea
                                 rows={4}
-                                className="w-full pl-14 pr-4 py-3 ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200 resize-none"
+                                className="w-full pl-14 pr-4 py-3 Ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200 resize-none"
                                 value={businessDescription}
                                 onChange={(e) => setBusinessDescription(e.target.value)}
                                 placeholder=" "
@@ -573,7 +573,7 @@ export default function LeadSaleModal({
                           <div className="relative">
                             <DollarSign className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                             <input
-                              className="w-full pl-14 pr-4 py-3 ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+                              className="w-full pl-14 pr-4 py-3 Ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
                               type="number"
                               value={amount}
                               onChange={(e) => setAmount(e.target.value)}
@@ -635,7 +635,7 @@ export default function LeadSaleModal({
                             type="checkbox"
                             checked={showTags}
                             onChange={(e) => setShowTags(e.target.checked)}
-                            className="ringnex-checkbox w-5 h-5 accent-purple-600"
+                            className="Ringnex-checkbox w-5 h-5 accent-purple-600"
                           />
                             <span className="text-black text-lg sm:text-xl font-semibold">Add Tags</span>
                          
@@ -679,7 +679,7 @@ export default function LeadSaleModal({
                       <div className="mb-3 relative">
                         <Phone className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
                         <input
-                          className="w-full pl-14 pr-4 py-3 ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+                          className="w-full pl-14 pr-4 py-3 Ringnex-input border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
                           type="text"
                           value={alternatePhone}
                           onChange={(e) => setAlternatePhone(e.target.value)}
