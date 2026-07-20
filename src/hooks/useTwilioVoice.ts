@@ -216,6 +216,57 @@ export function useTwilioDevice({ disabled = false }: { disabled?: boolean } = {
     return () => { clearTimer(); };
   }, [disabled, status, clearTimer]);
 
+  // ── RINGBACK TONE — outbound ringing par agent ko music/tone sunayi de
+  // (US ringback: 440+480Hz, 2s on / 4s off). WebAudio se synthesized —
+  // koi audio file nahi chahiye. Connect hote hi band. ──
+  const ringbackRef = useRef<{ stop: () => void } | null>(null);
+  const startRingback = useCallback(() => {
+    if (ringbackRef.current) return; // already playing
+    try {
+      const Ctx = (window as any).AudioContext || (window as any).webkitAudioContext;
+      if (!Ctx) return;
+      const ctx = new Ctx();
+      const gain = ctx.createGain();
+      gain.gain.value = 0;
+      gain.connect(ctx.destination);
+      const o1 = ctx.createOscillator(); o1.frequency.value = 440; o1.connect(gain); o1.start();
+      const o2 = ctx.createOscillator(); o2.frequency.value = 480; o2.connect(gain); o2.start();
+      let t1: any = null, t2: any = null, cancelled = false;
+      const cycle = () => {
+        if (cancelled) return;
+        gain.gain.setTargetAtTime(0.07, ctx.currentTime, 0.01); // tone ON
+        t1 = setTimeout(() => {
+          if (cancelled) return;
+          gain.gain.setTargetAtTime(0, ctx.currentTime, 0.01);  // tone OFF
+          t2 = setTimeout(cycle, 4000);
+        }, 2000);
+      };
+      cycle();
+      ringbackRef.current = {
+        stop: () => {
+          cancelled = true;
+          clearTimeout(t1); clearTimeout(t2);
+          try { o1.stop(); o2.stop(); ctx.close(); } catch {}
+          ringbackRef.current = null;
+        },
+      };
+    } catch { /* audio not available — silent fallback */ }
+  }, []);
+  const stopRingback = useCallback(() => {
+    ringbackRef.current?.stop();
+  }, []);
+
+  // Status ke hisaab se auto start/stop — DIALING par tone, connect/end par band
+  useEffect(() => {
+    if (disabled) return;
+    if (status === "DIALING") startRingback();
+    else stopRingback();
+    return () => { /* status change par upar handle hota */ };
+  }, [disabled, status, startRingback, stopRingback]);
+
+  // Unmount par hamesha band
+  useEffect(() => () => { ringbackRef.current?.stop(); }, []);
+
   useEffect(() => {
     if (disabled) return;
     if (!token || !user?.id) return;

@@ -363,7 +363,6 @@ function GridView({ calls, activeAction, actionLoading, handleAction, t, canBarg
                 </div>
                 <div style={{ display: 'flex', gap: 7 }}>
                   <ActionBtn active={listenActive}  loading={isLoadingThis && !bargeActive && !whisperActive} onClick={() => handleAction(call, 'listen')}  disabled={isLoadingThis} activeColor={t.purple}  idleBg={t.purpleBg}  idleColor={t.purpleText}  icon={Headphones}    activeLabel="Stop" idleLabel="Listen"   activeGlow="0 2px 12px rgba(124,58,237,0.28)" />
-                  <ActionBtn active={bargeActive}   loading={isLoadingThis && !listenActive && !whisperActive} onClick={() => handleAction(call, 'barge')}   disabled={isLoadingThis} activeColor={t.red}     idleBg={t.redBg}     idleColor={t.redText}     icon={Mic}           activeLabel="Stop" idleLabel="Barge"    activeGlow="0 2px 12px rgba(229,83,75,0.28)" />
                   {canBarge && <ActionBtn active={whisperActive} loading={isLoadingThis && !listenActive && !bargeActive} onClick={() => handleAction(call, 'whisper')} disabled={isLoadingThis} activeColor={t.whisper} idleBg={t.whisperBg} idleColor={t.whisperText} icon={MessageSquare} activeLabel="Stop" idleLabel="Whisper" activeGlow="0 2px 12px rgba(217,119,6,0.28)" />}
                 </div>
               </div>
@@ -459,7 +458,6 @@ function TableView({ calls, activeAction, actionLoading, handleAction, t, isDark
                     <td style={td}>
                       <div style={{ display: 'flex', gap: 7 }}>
                         <ActionBtn active={listenActive}  loading={isLoadingThis && !bargeActive && !whisperActive} onClick={() => handleAction(call, 'listen')}  disabled={isLoadingThis} activeColor={t.purple}  idleBg={t.purpleBg}  idleColor={t.purpleText}  icon={Headphones}    activeLabel="Stop" idleLabel="Listen"  activeGlow="0 2px 10px rgba(124,58,237,0.28)" />
-                        <ActionBtn active={bargeActive}   loading={isLoadingThis && !listenActive && !whisperActive} onClick={() => handleAction(call, 'barge')}   disabled={isLoadingThis} activeColor={t.red}     idleBg={t.redBg}     idleColor={t.redText}     icon={Mic}           activeLabel="Stop" idleLabel="Barge"   activeGlow="0 2px 10px rgba(229,83,75,0.28)" />
                         {canBarge && <ActionBtn active={whisperActive} loading={isLoadingThis && !listenActive && !bargeActive} onClick={() => handleAction(call, 'whisper')} disabled={isLoadingThis} activeColor={t.whisper} idleBg={t.whisperBg} idleColor={t.whisperText} icon={MessageSquare} activeLabel="Stop" idleLabel="Whisper" activeGlow="0 2px 10px rgba(217,119,6,0.28)" />}
                       </div>
                     </td>

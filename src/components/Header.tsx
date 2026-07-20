@@ -1013,7 +1013,8 @@ const refreshBtn = (
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>{toggleBtn}</div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <ClockWidget isDark={isDark} />
-          {user?.role === "ADMIN" && <WalletChip isDark={isDark} /> } 
+          {/* Wallet removed for now (future use) — chip hidden
+          {user?.role === "ADMIN" && <WalletChip isDark={isDark} /> } */} 
       
           {themeBtn}
           <Tooltip text="Check for App Updates"><span><UpdateButton /></span></Tooltip>

@@ -40,7 +40,7 @@ export default function WalletLowModal() {
   useEffect(() => {
     if (!isAdmin) return;
 
-    const socket = io(API_URL, { transports: ["websocket"], autoConnect: true });
+    const socket = io(API_URL, { transports: ["websocket"], autoConnect: true, auth: { token: localStorage.getItem("token") } });
 
     // ✅ FIX #1: Changed from "wallet_low" to "company:wallet_low"
     socket.on("company:wallet_low", (data: WalletLowPayload) => {

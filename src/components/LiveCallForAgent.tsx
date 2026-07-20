@@ -153,7 +153,7 @@ export default function LiveCallForAgent({ calls,teamId }: { calls: any[],teamId
 
   /* ── Socket: call ended ── */
   useEffect(() => {
-    const socket = io(API_URL, { transports: ["websocket"], autoConnect: true });
+    const socket = io(API_URL, { transports: ["websocket"], autoConnect: true, auth: { token: localStorage.getItem("token") } });
 
     // ✅ FIX #3: Handle new payload with type and reason fields
     socket.on("admin-call-ended", ({ conferenceName, type, reason }: any) => {
@@ -504,12 +504,7 @@ function AgentCallRow({
             Listen
           </button>
 
-          {/* Barge */}
-          <button onClick={onBarge} disabled={!canBarge || !!loading} title={!canBarge ? "Barge access not granted" : "Barge into call"}
-            style={{ display: "inline-flex", alignItems: "center", gap: 6, background: isActive && activeMode === "barge" ? tk.BARGE_COLOR : canBarge ? tk.BARGE_BG : tk.DISABLED_BG, color: isActive && activeMode === "barge" ? "#fff" : canBarge ? tk.BARGE_COLOR : tk.DISABLED_TEXT, border: `1px solid ${canBarge ? tk.BARGE_BORDER : tk.BORDER}`, borderRadius: 9, padding: "6px 13px", fontSize: 12.5, fontWeight: 600, cursor: !canBarge || loading ? "not-allowed" : "pointer", fontFamily: "inherit", transition: "all 0.12s", opacity: loading ? 0.6 : 1 }}
-          >
-            <Mic size={13} /> Barge
-          </button>
+          {/* Barge REMOVED — sirf Listen + Whisper */}
 
           {/* Whisper — only shown when canWhisper (= canBarge) */}
           {canWhisper && (
@@ -600,11 +595,7 @@ function AgentMonitorModal({
             >
               <Ear size={14} /> Listen
             </button>
-            <button onClick={() => onSwitchMode("barge")} disabled={!canBarge}
-              style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 7, padding: "10px 0", borderRadius: 10, border: `1px solid ${canBarge ? tk.BARGE_BORDER : tk.BORDER}`, background: !canBarge ? tk.DISABLED_BG : isBarge ? tk.BARGE_COLOR : tk.BARGE_BG, color: !canBarge ? tk.DISABLED_TEXT : isBarge ? "#fff" : tk.BARGE_COLOR, fontSize: 13, fontWeight: 600, cursor: canBarge ? "pointer" : "not-allowed", fontFamily: "inherit", transition: "all 0.12s", opacity: canBarge ? 1 : 0.6 }}
-            >
-              <Mic size={14} /> Barge
-            </button>
+            {/* Barge REMOVED — sirf Listen + Whisper */}
             {canWhisper && (
               <button onClick={() => onSwitchMode("whisper")}
                 style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 7, padding: "10px 0", borderRadius: 10, border: `1px solid ${tk.WHISPER_BORDER}`, background: isWhisper ? tk.WHISPER_COLOR : tk.WHISPER_BG, color: isWhisper ? "#fff" : tk.WHISPER_COLOR, fontSize: 13, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", transition: "all 0.12s" }}

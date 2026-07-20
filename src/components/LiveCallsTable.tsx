@@ -102,7 +102,7 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
     agentName: string;
     customerNumber: string;
     supervisorCallSid: string;
-    mode: "listen" | "barge";
+    mode: "listen" | "coach";
   } | null>(null);
 
   const [monitorDuration, setMonitorDuration] = useState(0);
@@ -179,7 +179,7 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
 
   /* ── Socket: call ended pe cleanup ── */
   useEffect(() => {
-    const socket = io(API_URL, { transports: ["websocket"], autoConnect: true });
+    const socket = io(API_URL, { transports: ["websocket"], autoConnect: true, auth: { token: localStorage.getItem("token") } });
 
     // ✅ FIX #2: Handle new payload with type and reason fields
     socket.on("admin-call-ended", ({ conferenceName, type, reason }: any) => {
@@ -221,7 +221,7 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
      mode: "listen" → muted = true  (sirf sunega)
      mode: "barge"  → muted = false (bol bhi sakta)
   ──────────────────────────────────────────────────────── */
-  const handleAction = async (call: any, mode: "listen" | "barge") => {
+  const handleAction = async (call: any, mode: "listen" | "coach") => {
     // Already monitoring this call — stop first
     if (monitorCall) await stopMonitor();
 
@@ -242,7 +242,7 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
         mode,
       });
       setMonitorDuration(0);
-      setSpeakerOn(mode === "barge"); // barge mein speaker "on" means unmuted
+      setSpeakerOn(mode === "coach"); // barge mein speaker "on" means unmuted
 
       // ★ Mute/unmute set karo — 800ms delay taaki call fully connect ho jaaye
       setTimeout(() => {
@@ -251,7 +251,7 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
         }
       }, 800);
 
-      toast.success(mode === "listen" ? "🎧 Listening to call…" : "🎤 Barged into call", { duration: 3000 });
+      toast.success(mode === "listen" ? "🎧 Listening to call…" : "🎤 Whispering to agent", { duration: 3000 });
     } catch (err: any) {
       toast.error(err?.response?.data?.message || `Failed to ${mode} call`);
     } finally {
@@ -291,7 +291,7 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
   };
 
   /* ── Switch mode on-the-fly ── */
-  const handleSwitchMode = async (newMode: "listen" | "barge") => {
+  const handleSwitchMode = async (newMode: "listen" | "coach") => {
     if (!monitorCall || monitorCall.mode === newMode) return;
 
     try {
@@ -307,8 +307,8 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
       }
 
       setMonitorCall(prev => prev ? { ...prev, mode: newMode } : prev);
-      setSpeakerOn(newMode === "barge");
-      toast.success(newMode === "listen" ? "🎧 Switched to listen" : "🎤 Switched to barge", { duration: 2000 });
+      setSpeakerOn(newMode === "coach");
+      toast.success(newMode === "listen" ? "🎧 Switched to listen" : "🎤 Switched to whisper", { duration: 2000 });
     } catch {
       toast.error("Failed to switch mode");
     }
@@ -381,7 +381,7 @@ export default function LiveCallsTable({ calls }: { calls: any[] }) {
                   activeMode={monitorCall?.conferenceName === call.conferenceName ? monitorCall?.mode : undefined}
                   loadingThis={actionLoading === call.conferenceName}
                   onListen={() => handleAction(call, "listen")}
-                  onBarge={() => handleAction(call, "barge")}
+                  onBarge={() => handleAction(call, "coach")}
                   tk={tk}
                 />
               ))}
@@ -492,13 +492,13 @@ function CallRow({ call, carrier, isLast, isActive, activeMode, loadingThis, onL
       <td style={cell}>
         {isActive ? (
           <span style={{
-            background: activeMode === "barge" ? tk.BARGE_BG : tk.P_BG,
-            color: activeMode === "barge" ? tk.BARGE_COLOR : tk.P,
-            border: `1px solid ${activeMode === "barge" ? tk.BARGE_BORDER : tk.P_BORDER}`,
+            background: activeMode === "coach" ? tk.BARGE_BG : tk.P_BG,
+            color: activeMode === "coach" ? tk.BARGE_COLOR : tk.P,
+            border: `1px solid ${activeMode === "coach" ? tk.BARGE_BORDER : tk.P_BORDER}`,
             borderRadius: 9999, padding: "3px 10px",
             fontSize: 11, fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase",
           }}>
-            {activeMode === "barge" ? "🎤 Barged In" : "🎧 Listening"}
+            {activeMode === "coach" ? "🎤 Whispering" : "🎧 Listening"}
           </span>
         ) : (
           <span style={{
@@ -543,8 +543,8 @@ function CallRow({ call, carrier, isLast, isActive, activeMode, loadingThis, onL
             disabled={!!loadingThis}
             style={{
               display: "inline-flex", alignItems: "center", gap: 6,
-              background: isActive && activeMode === "barge" ? tk.BARGE_COLOR : tk.BARGE_BG,
-              color: isActive && activeMode === "barge" ? "#fff" : tk.BARGE_COLOR,
+              background: isActive && activeMode === "coach" ? tk.BARGE_COLOR : tk.BARGE_BG,
+              color: isActive && activeMode === "coach" ? "#fff" : tk.BARGE_COLOR,
               border: `1px solid ${tk.BARGE_BORDER}`,
               borderRadius: 9, padding: "6px 14px",
               fontSize: 12.5, fontWeight: 600, cursor: loadingThis ? "not-allowed" : "pointer",
@@ -553,7 +553,7 @@ function CallRow({ call, carrier, isLast, isActive, activeMode, loadingThis, onL
             }}
           >
             <Mic size={13} />
-            Barge
+            Whisper
           </button>
         </div>
       </td>
@@ -569,7 +569,7 @@ function MonitorModal({
   duration, mode, speakerOn,
   onToggleSpeaker, onSwitchMode, onStop,
 }: any) {
-  const isBarge = mode === "barge";
+  const isBarge = mode === "coach";
 
   return (
     <motion.div
@@ -651,7 +651,7 @@ function MonitorModal({
               <Ear size={14} /> Listen Only
             </button>
             <button
-              onClick={() => onSwitchMode("barge")}
+              onClick={() => onSwitchMode("coach")}
               style={{
                 flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 7,
                 padding: "10px 0", borderRadius: 10, border: `1px solid ${tk.BARGE_BORDER}`,
@@ -661,7 +661,7 @@ function MonitorModal({
                 transition: "all 0.12s",
               }}
             >
-              <Mic size={14} /> Barge In
+              <Mic size={14} /> Whisper
             </button>
           </div>
 

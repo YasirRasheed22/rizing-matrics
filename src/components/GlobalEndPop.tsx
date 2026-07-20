@@ -28,17 +28,23 @@ export default function GlobalEndPop() {
 
   if (!call?.endWindowScreen) return null;
 
+  // Call-log socket event backend ke background work se 1-3s baad aata hai —
+  // jab tak nahi aaya, "Loading…" dikhao (previous call ka data na dikhe).
+  const logReady = !!(single?.sessionId && single?.number);
+
   return (
     <EndCallPopup
       leadId={1}
       callData={{
-        contactName:            single?.contactName || "Unknown",
-        contactNumber:          single?.number,
-        contactNumberFormatted: single?.formatted || single?.number,
-        startTime:              formatDateNice(single?.startTime),
-        endTime:                formatDateNice(single?.endTime),
-        durationSeconds:        single?.duration || 0,
-        direction:              single?.outbound,
+        contactName:            logReady ? (single?.contactName || "Unknown") : "Loading…",
+        contactNumber:          logReady ? single?.number : "",
+        contactNumberFormatted: logReady ? (single?.formatted || single?.number) : "…",
+        startTime:              logReady ? formatDateNice(single?.startTime) : "…",
+        endTime:                logReady ? formatDateNice(single?.endTime) : "…",
+        durationSeconds:        logReady ? (single?.duration || 0) : 0,
+        // BUG FIX: field ka naam `direction` hai — pehle `outbound` parh
+        // raha tha jo kabhi exist nahi karta (popup mein direction gayab)
+        direction:              logReady ? single?.direction : undefined,
       }}
       onClose={call.onEndPopClose}
       onCallEnded={call.onAfterSaveEndPopClose}

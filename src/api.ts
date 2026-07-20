@@ -32,7 +32,11 @@ api.interceptors.response.use(
       localStorage.removeItem("user");
 
       if (!window.location.hash.includes("/login")) {
-        window.location.replace("/#/login");
+        // Electron production (file://...index.html) mein replace("/#/login")
+        // file-system root par le jata tha → BLANK SCREEN. Hash set + reload
+        // current index.html par hi rehta hai — dev (http) aur .exe dono OK.
+        window.location.hash = "#/login";
+        window.location.reload();
       }
     }
 

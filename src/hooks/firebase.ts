@@ -5,14 +5,13 @@ import { getDatabase } from "firebase/database";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDGMdxGMjSUznnmWA7D54qUSR5nnSMZYm8",
-  authDomain: "aiodialer.firebaseapp.com",
-  databaseURL: "https://aiodialer-default-rtdb.firebaseio.com",
-  projectId: "aiodialer",
-  storageBucket: "aiodialer.firebasestorage.app",
-  messagingSenderId: "697103844003",
-  appId: "1:697103844003:web:31e7e31f35eadc0add7516",
-  measurementId: "G-1DXZQXBR44"
+  apiKey: "AIzaSyBcDDgfCXIh7XtfgN5AEK83p7LlmpMzEkk",
+  authDomain: "rizing-matrics.firebaseapp.com",
+  databaseURL: "https://rizing-matrics-default-rtdb.firebaseio.com",
+  projectId: "rizing-matrics",
+  storageBucket: "rizing-matrics.firebasestorage.app",
+  messagingSenderId: "536811229367",
+  appId: "1:536811229367:web:fdcdff24f425946b023d32"
 };
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
