@@ -25,7 +25,7 @@ import api from "../../api";
 import toast from "react-hot-toast";
 import BillingAgentView from "./BillingAgentView";
 
-const API_URL = "https://api.rizingmatrics.com";
+const API_URL = "https://api.ringnex.co";
 
 // Monthly filter — current month + previous 11 months
 const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -298,6 +298,10 @@ export default function BillingEnterprise() {
 
   const totals = overview?.totals || {};
 
+  // Calls billing mode — .env-only (BILLING_MODE), no admin toggle. "lumpsum"
+  // = flat per-minute rate (calls only), same in/outbound, no margin.
+  const isLumpsum = pricingConfig?.billingMode === "lumpsum";
+
   const inc = overview?.inclusive || {};
   const usage = overview?.twilioUsage || null;
   // Provider (Twilio/Commio) raw costs par margin baat kar (baked) do —
@@ -317,10 +321,17 @@ export default function BillingEnterprise() {
     [inc]
   );
 
+  const carrierLabel = (carrier: string) =>
+    carrier === "commio"
+      ? "Commio (BYOC)"
+      : carrier === "twilio-pstn-fallback"
+      ? "Twilio (PSTN Fallback)"
+      : carrier;
+
   const carrierData = useMemo(
     () =>
       (overview?.carrierSplit || []).map((c: any) => ({
-        name: c.carrier === "commio" ? "Commio (BYOC)" : c.carrier === "twilio" ? "Twilio PSTN" : c.carrier,
+        name: carrierLabel(c.carrier),
         spend: Math.round((c.spend || 0) * 10000) / 10000,
         twilio: Math.round((c.twilioCost || 0) * 10000) / 10000,
         commio: Math.round((c.commioCost || 0) * 10000) / 10000,
@@ -474,8 +485,20 @@ export default function BillingEnterprise() {
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         <HeroStat
           icon={DollarSign} color="#5B5BD6" label="Total Cost"
-          value={providerCosts ? fmt2(providerCosts.totalToBill) : (providerLoading ? "…" : fmt2(totals.totalSpend))}
-          caption="Twilio (both legs) + SIP + Recording + Conference — all-inclusive"
+          value={
+            // providerCosts.totalToBill is the correctly-composed sum in BOTH
+            // modes (lumpsum calls + phone numbers + recording storage +
+            // conference, or realtime cost+margin) — totals.totalSpend (wallet
+            // ledger) is ONLY a fallback for before providerCosts has loaded,
+            // since it structurally can't include phone numbers/storage/conference
+            // (those never become wallet transactions).
+            providerCosts ? fmt2(providerCosts.totalToBill) : (providerLoading ? "…" : fmt2(totals.totalSpend))
+          }
+          caption={
+            isLumpsum
+              ? `Flat rate — ${fmt(pricingConfig?.callRatePerMinute, 4)}/min per call (same in/outbound)`
+              : "Twilio (both legs) + SIP + Recording + Conference — all-inclusive"
+          }
         />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(190px, 1fr))", gap: 10 }}>
           <Kpi icon={PhoneOutgoing} label={`Outbound · ${inc.outboundCalls || 0} calls`} color={CAT_COLORS.voice}
@@ -499,19 +522,27 @@ export default function BillingEnterprise() {
             <Kpi icon={Users} label="Conference (usage)" color="#7C3AED"
                  value={fmt2(withMargin(usage.conference))} />
           )}
-          {/* SIP carrier (Commio) cost + usage — filtered to this account */}
+          {/* SIP carrier (Commio) cost. Realtime: margin-inclusive (it's part
+              of what's billed). Lumpsum: RAW actual cost, no margin — this is
+              informational only (your own expense reference) since calls are
+              billed at a flat rate that already covers it — NOT part of the
+              Total Cost hero, showing it margin-inflated here would misrepresent
+              it as a billed line item. */}
           <Kpi
             icon={Radio}
             label={
               providerCosts?.commio?.available
-                ? `SIP · ${providerCosts.commio.callCount ?? 0} calls · ${providerCosts.commio.minutes ?? 0} min`
+                ? `SIP · ${providerCosts.commio.callCount ?? 0} calls · ${providerCosts.commio.minutes ?? 0} min${isLumpsum ? " · your cost" : ""}`
                 : "SIP"
             }
             color="#17A363"
             value={
               providerLoading && !providerCosts ? "…"
               : !providerCosts?.commio?.configured ? "n/a"
-              : providerCosts?.commio?.available ? fmt2(withMargin(providerCosts.commio.total))
+              // ⚠️ 4dp (not fmt2's 2dp) — Commio per-call cost is often
+              // sub-cent (e.g. $0.0018 for a 0.2min call); at 2dp that
+              // rounds to a misleading "$0.00" even though real cost exists.
+              : providerCosts?.commio?.available ? fmt(isLumpsum ? providerCosts.commio.total : withMargin(providerCosts.commio.total))
               : "…"
             }
           />
@@ -692,6 +723,9 @@ export default function BillingEnterprise() {
         const t = detailTx;
         const isCallLike = ["debit_call", "debit_voicemail"].includes(t.type);
         const isSmsLike = ["debit_sms", "debit_mms"].includes(t.type);
+        // Flat per-minute rate (BILLING_MODE=lumpsum) — no cost breakdown to show,
+        // twilio/SIP/recording rows would all be $0 here (never priced in this mode).
+        const isRowLumpsum = t.pricingMode === "lumpsum";
         // Legs: pehle stored meta se (billing-time snapshot), warna live fetch se
         const legs = (t.meta?.legs?.length ? t.meta.legs : detailLive?.legs) || [];
         const reconciled = !!t.meta?.reconciled;
@@ -718,12 +752,17 @@ export default function BillingEnterprise() {
         //   Call rate (Twilio legs) + SIP + Recording = Total charged
         // Pehle "Call rate (both legs)" mein SIP chhupa hota tha — Total
         // ke barabar dikh kar lagta tha SIP add hi nahi hua (confusing).
+        // ⚠️ `||` (not `??`) — t.commioCost table ki BULK fuzzy match se aata
+        // hai, jo match na milne par 0 (defined, not null/undefined) deta hai;
+        // `??` isse kabhi detailLive.commioCost (modal ka EXACT SIP-Call-ID
+        // match) tak fallback hi nahi hone deta tha — behtar number silently
+        // discard ho raha tha.
         const sipInclusive =
-          ((t.commioCost ?? detailLive?.commioCost ??
+          ((t.commioCost || detailLive?.commioCost ||
             (legs.length ? legs.reduce((s: number, l: any) => s + (l.commioPrice || 0), 0) : 0)) || 0) * factor;
         const conferenceInclusive = ((t.conferenceCost ?? 0) || 0) * factor;
         const twilioLegsInclusive = (() => {
-          const tw = t.twilioCost ?? detailLive?.twilioCost ??
+          const tw = t.twilioCost || detailLive?.twilioCost ||
             (legs.length ? legs.reduce((s: number, l: any) => s + (l.twilioPrice || 0), 0) : null);
           if (tw != null) return tw * factor;
           // fallback: Total − SIP − recording − conference
@@ -788,14 +827,25 @@ export default function BillingEnterprise() {
                   {e.agentName && row("Handled by", e.agentName)}
 
                   {/* Cost summary — lines visibly sum to Total:
-                      Call rate (Twilio) + SIP + Recording = Total charged */}
-                  {row("Call rate (Twilio legs)", fmt(twilioLegsInclusive))}
-                  {sipInclusive > 0 && row("SIP price (carrier billable)", "+ " + fmt(sipInclusive))}
-                  {recordingCost > 0 && row("Recording", "+ " + fmt(recordingCost))}
-                  {conferenceInclusive > 0 && row("Conference", "+ " + fmt(conferenceInclusive))}
-                  {row("Total charged", fmt(t.amount), { bold: true })}
-                  {t.twilioCallDuration != null && row("Billed duration", `${t.twilioCallDuration}s (${Math.ceil((t.twilioCallDuration || 0) / 60)} min)`)}
-                  {t.carrier && row("Carrier route", t.carrier)}
+                      Call rate (Twilio) + SIP + Recording = Total charged.
+                      Lumpsum mode: flat per-minute rate instead (no cost breakdown). */}
+                  {isRowLumpsum ? (
+                    <>
+                      {row("Rate", `${fmt(pricingConfig?.callRatePerMinute, 4)}/min`)}
+                      {row("Billed duration", `${t.twilioCallDuration ?? 0}s (${Math.ceil((t.twilioCallDuration || 0) / 60)} min)`)}
+                      {row("Total charged", fmt(t.amount), { bold: true })}
+                    </>
+                  ) : (
+                    <>
+                      {row("Call rate (Twilio legs)", fmt(twilioLegsInclusive))}
+                      {sipInclusive > 0 && row("SIP price (carrier billable)", "+ " + fmt(sipInclusive))}
+                      {recordingCost > 0 && row("Recording", "+ " + fmt(recordingCost))}
+                      {conferenceInclusive > 0 && row("Conference", "+ " + fmt(conferenceInclusive))}
+                      {row("Total charged", fmt(t.amount), { bold: true })}
+                      {t.twilioCallDuration != null && row("Billed duration", `${t.twilioCallDuration}s (${Math.ceil((t.twilioCallDuration || 0) / 60)} min)`)}
+                      {t.carrier && row("Carrier route", carrierLabel(t.carrier))}
+                    </>
+                  )}
 
                   {/* Participants — jab call conference mein gayi ho (ya multi-party) */}
                   {legs.length > 0 && (
