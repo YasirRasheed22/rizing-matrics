@@ -81,7 +81,7 @@
           ]
         }
       ],
-      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "artifactName": "ringnex-beta-setup-${version}.${ext}",
       "requestedExecutionLevel": "asInvoker"
     },
     "nsis": {
